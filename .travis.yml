@@ -14,7 +14,7 @@ install:
   - sudo apt-get install -y protobuf-compiler
 
 before_script:
-  - pip install sphinx pygments
+  - pip install sphinx pygments sphinxcontrib-inlinesyntaxhighlight
 
 script:
   - make -C docs/ install-lexer build-doc-warning
