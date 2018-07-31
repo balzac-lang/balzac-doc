@@ -119,12 +119,12 @@ See :doc:`transactions`.
 		const n = 21 * m
 		const m = 2
 
-"""""""
-Compile
-"""""""
+""""""""""
+Evaluation
+""""""""""
 
 The :btm:`eval` statement takes a list of expression and evaluate them.
-The compiled expressions are saved in text format in ``src-gen/_package-path_/transactions``.
+The results are saved in text format in ``src-gen/_package-path_/transactions``.
 
 .. code-block:: btm
 
