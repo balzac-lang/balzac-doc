@@ -46,7 +46,7 @@ class EclipseStyle(Style):
         Name.Decorator:            "nobold #646464",            # @Annotations - 100,100,100
         Name.Tag:                  "nobold #b32d00",
 
-        String:                    "#2A00FF",        # 42,0,255
+        String:                    "#0059b3",
 
         Generic.Heading:           "bold",
         Generic.Subheading:        "bold",
