@@ -48,7 +48,7 @@ class BalzacLexer(RegexLexer):
              r'(\s*)(\()',                              # signature start
              bygroups(using(this), Name.Function, Text, Operator)),
             (r'\s*@\s*', Text),
-            (r'(transaction|const)(\s+)(\w+)', bygroups(Keyword.Declaration, Text, Name.Variable.Global)),
+            (r'(transaction|const|participant)(\s+)(\w+)(\s*)(\()', bygroups(Keyword.Declaration, Text, Name.Variable.Global, Operator)),
             #(r'(abstract|const|enum|extends|final|implements|native|private|protected|public|static|strictfp|super|synchronized|throws|transient|volatile)\b', Keyword.Declaration),
             (r'(bool|boolean|string|hash|int|signature|transaction|address|key|pubkey)\b', Keyword.Type),
             (r'(package)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
