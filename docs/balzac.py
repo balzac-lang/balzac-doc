@@ -38,7 +38,7 @@ class BalzacLexer(RegexLexer):
             (r'hash:|sig:|address:|key:|pubkey:|tx:|txid:', Keyword.Pseudo, 'literal'),
             # keywords: go before method names to avoid lexing "throw new XYZ"
             # as a method signature
-            (r'\b(network|mainnet|testnet|regtest|this|input|output|absLock|relLock|after|block|date|from|if|then|else|sig|of|versig|fun|BTC|hash160|hash256|ripemd160|sha256|sha1|min|max|between|size|eval|checkBlock|checkDate|checkBlockDelay|checkTimeDelay|toAddress|toPubkey|value|AIAO|AISO|AINO|SIAO|SISO|SINO)\b', Keyword),
+            (r'\b(network|mainnet|testnet|regtest|this|input|output|absLock|relLock|after|block|date|from|if|then|else|sig|of|versig|fun|BTC|hash160|hash256|ripemd160|sha256|sha1|min|max|between|size|eval|checkBlock|checkDate|checkBlockDelay|checkTimeDelay|toAddress|toPubkey|value|AIAO|AISO|AINO|SIAO|SISO|SINO|private|participant)\b', Keyword),
             (r'(sig)'                           # sig
              r'\((([^\W\d]|\$)[\w\'$]*)\)',      # key
              bygroups(using(this), Text)),
@@ -48,7 +48,7 @@ class BalzacLexer(RegexLexer):
              r'(\s*)(\()',                              # signature start
              bygroups(using(this), Name.Function, Text, Operator)),
             (r'\s*@\s*', Text),
-            (r'(transaction|const|participant)(\s+)(\w+)(\s*)(\()?', bygroups(Keyword.Declaration, Text, Name.Variable.Global, Operator)),
+            (r'\b(transaction|const)(\s+)', bygroups(Keyword.Declaration, Text), 'declaration'),
             #(r'(abstract|const|enum|extends|final|implements|native|private|protected|public|static|strictfp|super|synchronized|throws|transient|volatile)\b', Keyword.Declaration),
             (r'(bool|boolean|string|hash|int|signature|transaction|address|key|pubkey)\b', Keyword.Type),
             (r'(package)(\s+)', bygroups(Keyword.Namespace, Text), 'import'),
@@ -66,7 +66,7 @@ class BalzacLexer(RegexLexer):
             (r'\n', Text)
         ],
         'declaration': [
-            (r'([^\W\d]|\$)[\w\'$]*', Name.Variable.Global, '#pop')
+            (r'[\w]+', Name.Variable.Global, '#pop')
         ],
         'import': [
             (r'[\w.]+\*?', Name.Namespace, '#pop')
