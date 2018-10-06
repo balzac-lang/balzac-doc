@@ -45,6 +45,7 @@ class EclipseStyle(Style):
         Name.Decorator:            "nobold #646464",            # @Annotations - 100,100,100
         Name.Tag:                  "nobold #b32d00",
         Name.Function:             "bold #7F0055",              # Built-in functions
+        Name.Builtin:              "bold #7F0055",              # Built-in names
 
         String:                    "#0059b3",
 
