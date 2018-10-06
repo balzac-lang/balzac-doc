@@ -40,11 +40,11 @@ class EclipseStyle(Style):
         Name.Namespace:            "nobold #000",
         Name.Exception:            "nobold #000",
         Name.Entity:               "nobold #000",
-        Name.Tag:                  "bold #7F0055",        # XML/HTML tags - 127,0,85
         Name.Function:             "nobold #000",
-        Name.Attribute:            "nobold #000",            # XML/HTML attributes
+        Name.Attribute:            "nobold #000",               # XML/HTML attributes
         Name.Decorator:            "nobold #646464",            # @Annotations - 100,100,100
         Name.Tag:                  "nobold #b32d00",
+        Name.Function:             "bold #7F0055",              # Built-in functions
 
         String:                    "#0059b3",
 
