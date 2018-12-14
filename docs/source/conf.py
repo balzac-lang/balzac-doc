@@ -48,8 +48,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'BALZaC'
-copyright = '2018, N. Atzei N., M. Bartoletti, T. Cimoli, S. Lande, R. Zunino'
-author = 'N. Atzei N., M. Bartoletti, T. Cimoli, S. Lande, R. Zunino'
+copyright = '2018, N. Atzei, M. Bartoletti, T. Cimoli, S. Lande, R. Zunino'
+author = 'N. Atzei, M. Bartoletti, T. Cimoli, S. Lande, R. Zunino'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -230,7 +230,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'Balzac.tex', 'Balzac Documentation',
-     'N. Atzei N., M. Bartoletti, T. Cimoli, S. Lande, R. Zunino', 'manual'),
+     'N. Atzei, M. Bartoletti, T. Cimoli, S. Lande, R. Zunino', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
