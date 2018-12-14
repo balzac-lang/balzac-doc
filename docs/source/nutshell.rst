@@ -273,9 +273,3 @@ Indeed:
     }
     
     eval T9_bis(4)  //sig(kA) is calculated now
-
-
-.. rubric:: References
-
-.. [#f1] https://bitcoin.org/en/glossary/wallet-import-format
-
