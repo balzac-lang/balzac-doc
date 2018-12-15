@@ -23,8 +23,8 @@ class BalzacLexer(RegexLexer):
     """
 
     name = 'Balzac'
-    aliases = ['balzac','BALZAC','btm','BTM']
-    filenames = ['*.btm']
+    aliases = ['balzac','BALZAC']
+    filenames = ['*.balzac']
 
     flags = re.MULTILINE | re.DOTALL | re.UNICODE
 
