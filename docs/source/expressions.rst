@@ -24,7 +24,7 @@ Integers are 64-bit signed numbers, whose type is :balzac:`int`.
 Integers syntax is Java-like: digits can be separated with ``_`` to improve readability
 and hexadecimal numbers are prefixed with ``0x`` or ``0X``.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         42,
@@ -46,7 +46,7 @@ and avoid errors: **dates** and **delays**.
 * ``DateTimeFormatter.ISO_LOCAL_DATE_TIME`` (e.g. ``2018-01-31T10:30:59``)
 * ``DateTimeFormatter.ISO_OFFSET_DATE_TIME`` (e.g. ``2018-01-31T10:30:59+02:00``)
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         1969-12-31T23:59:59,  // -1
@@ -61,7 +61,7 @@ The parsing rules are straightforward and conversions are done at parsing time:
 * ``INT (h|hour|hours)``: multiply ``INT`` by ``60 * 60``
 * ``INT (d|day|days)``: multiply ``INT`` by ``60 * 60 * 24``
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         1m,         // 60
@@ -80,7 +80,7 @@ Strings
 Strings are sequence of characters, whose type is :balzac:`string`.
 Strings are enclosed by ``"`` or ``'``.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         'Hello Balzac!',
@@ -99,7 +99,7 @@ Hashes are sequences of hexdecimal data, whose type is :balzac:`hash`.
 Hashes are represented using the prefix :balzac:`hash:` followed by the hash in
 hexadecimal format. The number of digits is not limited but must be even.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         hash:00,
@@ -114,7 +114,7 @@ Signatures are sequences of hexadecimal data, whose type is :balzac:`signature`.
 Signatures are represented using the prefix :balzac:`sig:` followed by the raw data in
 hexadecimal format. The number of digits is not limited but must be even.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         sig:3045022100ca9d6c44745a5b0ee3a1868d55c59bf691826f670dddd8717da828685b...
@@ -134,7 +134,7 @@ different WIF representation in the mainnet and in the testnet.
 The sidebar of the `online editor <http://blockchain.unica.it/balzac/>`_
 allows to create new random keys (generated server side).
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         // testnet
@@ -151,7 +151,7 @@ hexadecimal format. The number of digits is not limited but must be even.
 The sidebar of the `online editor <http://blockchain.unica.it/balzac/>`_
 allows to create new random keys (generated server side).
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         pubkey:027b62af31b2114f960327aa258503a86aad0615618de7a6a1ad9fbb08e5fe7fff
@@ -170,7 +170,7 @@ different WIF representation in the mainnet and in the testnet.
 The sidebar of the `online editor <http://blockchain.unica.it/balzac/>`_
 allows to create new random addresses (generated server side).
 
-.. code-block:: btm
+.. code-block:: balzac
    
     eval
         // testnet
@@ -186,7 +186,7 @@ transaction data in hexadecimal format. Transactions have type :balzac:`transact
 
 |langname| features new transaction creation, as explained in section :doc:`Transactions <transactions>`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     tx:0200000002a04eb44f83160d5589c6053852fc9e2b88dd27f97422cc869d0c92e9444...
 
@@ -201,7 +201,7 @@ The precedence is: ``!`` > ``&&`` > ``||``.
 The type for a boolean operation is :balzac:`bool` and the type system ensures that
 both the operands are of that type.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         a == 5 && (b == "balzac" || b == "Balzac")
@@ -223,7 +223,7 @@ The syntax is Java-like:
 
 The precedence is: ``- (unary)`` > ``*`` ``/`` > ``+`` ``-`` > ``==`` ``!=`` > ``<`` ``>`` ``<=`` ``>=``.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         a + 42 / 2,
@@ -237,7 +237,7 @@ The return type is :balzac:`int`.
 
 Optionally, ``e`` can be followed by a decimal part ``. INT``, where ``INT`` is a max 8-digit number (not an expression).
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         1 BTC,          // 100_000_000
@@ -258,7 +258,7 @@ A transaction reference has always type :balzac:`transaction`,
 while a constant reference has the same type of the declared constant expression.
 A parameter reference has the same type of the parameter it refers to.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     const zero = 0                // 'zero' has type int
     const one = zero + 1
@@ -275,7 +275,7 @@ provided when referencing to the transaction.
 References with actual parameters can be specified as ``refname(exp1,...,expN)``
 and the type of the actual parameters must match the formal one.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T(a:int, s:signature) {...}
     const s = sig:...
@@ -305,7 +305,7 @@ The type for conditional :balzac:`if expIf then expThen else expElse` is ``a'``,
 where :balzac:`bool` is the type for ``expIf`` and ``a'`` is the type of both ``expThen`` and ``expElse``.
 
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         if 1 == 0 then 4 else 6,
@@ -328,7 +328,7 @@ Max
 The maximum of two numbers can be expresses as :balzac:`max(a,b)`.
 This expression has type :balzac:`int` and expects that ``a`` and ``b`` have type :balzac:`int`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         max(5,10) == 10
@@ -340,7 +340,7 @@ The minimum of two numbers can be expresses as :balzac:`min(a,b)`.
 This expression has type :balzac:`int` and expects that ``a`` and ``b`` have type :balzac:`int`.
 
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         min(5,10) == 5
@@ -351,7 +351,7 @@ The expression :balzac:`between(x,min:max)` checks a number `x` is in range ``[m
 This expression has type :balzac:`bool` and expects that ``x``, ``min`` and ``max`` have type :balzac:`int`.
 
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval
         between(x,5,10),
@@ -378,7 +378,7 @@ The expression :balzac:`sha1(exp)`, where ``exp`` has type
 :balzac:`int`, :balzac:`string`, :balzac:`boolean` or :balzac:`hash`, returns a
 SHA-1 digest (type :balzac:`hash`).
 
-.. code-block:: btm
+.. code-block:: balzac
 
   eval 
       sha1(42),               // `echo -n -e "\\x2A" | openssl dgst -sha1`
@@ -394,7 +394,7 @@ The expression :balzac:`sha256(exp)`, where ``exp`` has type
 :balzac:`int`, :balzac:`string`, :balzac:`boolean` or :balzac:`hash`, returns a
 SHA-256 digest (type :balzac:`hash`).
 
-.. code-block:: btm
+.. code-block:: balzac
 
   eval 
       sha256(42),                 // `echo -n -e "\\x2A" | openssl dgst -sha256`
@@ -410,7 +410,7 @@ The expression :balzac:`ripemd160(exp)`, where ``exp`` has type
 :balzac:`int`, :balzac:`string`, :balzac:`boolean` or :balzac:`hash`, returns a
 RIPEMD-160 digest (type :balzac:`hash`).
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval 
         ripemd160(42),                      // `echo -n -e "\\x2A" | openssl dgst -ripemd160`
@@ -427,7 +427,7 @@ The expression :balzac:`hash256(exp)`, where ``exp`` has type
 the SHA-256 algorithm twice, returning :balzac:`hash`.
 It is equivalent to :balzac:`sha256(sha256(exp))`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
   eval 
       hash256(42),                  // `echo -n -e "\\x2A" | openssl dgst -sha256 -binary | openssl dgst -sha256`
@@ -444,7 +444,7 @@ The expression :balzac:`hash160(exp)`, where ``exp`` has type
 the SHA-256 algorithm followed by RIPEMD-160, returning :balzac:`hash`.
 It is equivalent to :balzac:`ripemd160(sha256(exp))`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
   eval 
       hash160(42),                  // `echo -n -e "\\x2A" | openssl dgst -sha256 -binary | openssl dgst -ripemd160`
@@ -470,7 +470,7 @@ toPubkey
 The expression :balzac:`k.toPubkey`, where ``k`` is an expression of type :balzac:`key`, returns the public key of ``k``.
 The return type is :balzac:`pubkey`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     const k = key:cVj2a2fp4rkykykQR65Bf9FKj7gzjY2QFyn7Kj5BwSmZvn2VQ8To
 
@@ -483,7 +483,7 @@ toAddress
 The expression :balzac:`k.toAddress`, where ``k`` is an expression of type :balzac:`key` or :balzac:`pubkey`, returns the public key of ``k``.
 The return type is :balzac:`address`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     const k = key:cRmmSTUUQvgJMCmC2dFTkY9R8K7g8uzXnkif6E1qopZvjzrg9oeD
     const kPub = pubkey:02d2da8344ce030e654aad19ec3ef513a80558a780ba89ca4a3f1588346aad2212
@@ -510,7 +510,7 @@ Transaction signature
 The expression :balzac:`sig(k) of T`, where ``k`` has type :balzac:`key` and ``T`` has type :balzac:`transaction`,
 generates a new signature. The result type is :balzac:`signature`.
 
-.. code-block:: btm
+.. code-block:: balzac
     :emphasize-lines: 14,15
 
     const kA = key:cVj2a2fp4rkykykQR65Bf9FKj7gzjY2QFyn7Kj5BwSmZvn2VQ8To
@@ -574,7 +574,7 @@ Transaction and index can be omitted in one case. Consider the following example
 
 .. container:: codecompare
 
-    .. code-block:: btm
+    .. code-block:: balzac
 
         transaction T {
             input = TA@1 : sig(k) of T
@@ -582,7 +582,7 @@ Transaction and index can be omitted in one case. Consider the following example
         }
 
 
-    .. code-block:: btm
+    .. code-block:: balzac
 
         transaction T {
             input = TA@1 : s
@@ -596,7 +596,7 @@ since the reference ``T`` creates a cycle.
 |langname| overcomes this problem omitting the transaction ``T`` to sign, 
 when the expression is used within a transaction, that is:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T {
         input = TA@1 : sig(k)
@@ -619,7 +619,7 @@ evaluates :balzac:`true` if the given signatures are valid against the provided 
 
 This expression can appear only within the script of a transaction output. 
 
-.. code-block:: btm
+.. code-block:: balzac
     :emphasize-lines: 8,12,17
 
     const kA = key:cVj2a2fp4rkykykQR65Bf9FKj7gzjY2QFyn7Kj5BwSmZvn2VQ8To
@@ -658,7 +658,7 @@ Since that a key that failed cannot be used anymore in the verification process
 
 For example, consider a *2-of-3* signature scheme: 
 
-.. code-block:: btm
+.. code-block:: balzac
     :emphasize-lines: 10
 
     const kA = key:cRmmSTUUQvgJMCmC2dFTkY9R8K7g8uzXnkif6E1qopZvjzrg9oeD
@@ -676,7 +676,7 @@ For example, consider a *2-of-3* signature scheme:
 The output script  :balzac:`versig(kApub, kBpub, kCpub; x, y)` evaluates true
 if  ``x`` and ``y``  respect the keys order.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T1 {
         input = T : sig(kA) sig(kB)         // OK
@@ -735,7 +735,7 @@ a block absolute timelock greater than ``blockN``, fails otherwise. Its type is 
 
 Moreover, the Bitcoin specification imposes that ``blockN < 500_000_000``.
 
-.. code-block:: btm
+.. code-block:: balzac
     :emphasize-lines: 6,12,18
 
     const blockN = 500_000
@@ -767,7 +767,7 @@ a block absolute timelock greater than ``date``, fails otherwise. Its type is *T
 
 Moreover, the Bitcoin specification imposes that ``date >= 500_000_000`` (or ``1985-11-05 00:53:20``).
 
-.. code-block:: btm
+.. code-block:: balzac
     :emphasize-lines: 6,12,18
 
     const deadline = 2019-01-01
@@ -807,7 +807,7 @@ a block relative timelock greater than ``blockN``, fails otherwise. Its type is 
 
 Moreover, the Bitcoin specification imposes that ``blockN < 65535``.
 
-.. code-block:: btm
+.. code-block:: balzac
     :emphasize-lines: 5,11,17
 
     const blockDelay = 500
@@ -838,7 +838,7 @@ a time relative timelock greater than ``seconds``, fails otherwise. Its type is 
 Moreover, the Bitcoin specification imposes that seconds is a multiple of 512,
 and that ``seconds / 512 <= 65535``.
 
-.. code-block:: btm
+.. code-block:: balzac
     :emphasize-lines: 5,11,17
 
     const timeDelay = 1day
@@ -877,7 +877,7 @@ of type :balzac:`transaction`, returns the sum (type :balzac:`int`) of the outpu
 If a transaction spends more than one output, the user can specify
 which input consider as :balzac:`T.input(i,j,...).value`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction coinbase1 {
         input = _    // no input 
@@ -912,7 +912,7 @@ of type :balzac:`transaction`, returns the sum (type :balzac:`int`) of the outpu
 If a transaction has more than one output, the user can specify
 which output consider as :balzac:`T.output(i,j,...).value`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction coinbase {
         input = _    // no input 
@@ -943,7 +943,7 @@ Remember that :ref:`this <label_this>` refers to transaction in which it is used
 The benefit of using :balzac:`this` is that it simplifies handling transaction
 fees and reminders. Consider the following example:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     //  Alice's public key
     const pubA = pubkey:02249f0fb7e6f0ca9e0f329b24c65c2ad0f792c86856889605ca317aab2a822ffd
@@ -983,7 +983,7 @@ is not used.
 
 Consider the following example:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     const k = key:cPGZo8VsEopkNFugJpzSaZFhwBVnajhsD5g4XzfcbhDp4VoLdgfw
     const kpub = k.toPubkey
@@ -1020,7 +1020,7 @@ or providing a secret ``s`` after the date :balzac:`2019-01-01`
 whose :balzac:`sha256` is equal to
 :balzac:`hash:684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // redeem T(s) providing a valid signature
     transaction T1 {

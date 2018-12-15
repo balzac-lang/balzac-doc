@@ -48,11 +48,11 @@ The table below shows the list of types
 
    .. container:: codecompare
 
-      .. code-block:: btm
+      .. code-block:: balzac
          
          const n:int = 42
 
-      .. code-block:: btm
+      .. code-block:: balzac
          
          const n = 42
 

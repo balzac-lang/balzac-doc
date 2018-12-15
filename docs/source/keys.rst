@@ -15,7 +15,7 @@ In |langname|,   keys and addresses are typed:
 the type is :balzac:`pubkey` for public keys, :balzac:`key` for private keys, and
 :balzac:`address` for  addresses. 
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // Alice's private key
     const kA = key:cUSH4x3Uq9uMgeZGdpTFvr5gVGYcAg4vrTNe9QvWsU8Dq3deym6Z
@@ -45,7 +45,7 @@ private key corresponding to ``kpub``.
 For instance, the following transaction transfers :balzac:`1 BTC` to a transaction
 signed by Alice:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // tx redeemable with Alice's private key
     transaction A_funds {
@@ -58,7 +58,7 @@ One can use :balzac:`versig` to check multiple signatures.
 For instance, in the following transaction the predicate :balzac:`versig(kApub, kBpub; x, y)` is true if  ``x`` is  Alice's signature and  ``y`` is Bob's.
 
 
-.. code-block:: btm
+.. code-block:: balzac
 
 	// tx redeemable with two signatures: Alice's and Bob's
 	transaction T {
@@ -82,7 +82,7 @@ key.
 In this way, :balzac:`versig`  can model complex  conditions, like
 a *2-of-3* multi signature scheme: 
 
-.. code-block:: btm
+.. code-block:: balzac
 
 	transaction T {
 		input = _
@@ -104,7 +104,7 @@ Signing transactions
 Assume we have a transaction ``A_funds`` as defined in the previous section.
 We can redeem ``A_funds`` with a  transaction ``TA`` made as follows:
    
-.. code-block:: btm
+.. code-block:: balzac
 
 	transaction TA {
 		input = A_funds : sig(kA)                // Alice's signature of TA
@@ -119,7 +119,7 @@ The actual signature is generated when compiling the transaction.
 Alternatively, we can use :balzac:`sig(kA) of TA` to generate the signature
 outside the transaction:
 
-.. code-block:: btm
+.. code-block:: balzac
 
 	transaction T {
 		input = A_funds : _                      // unspecified witness
@@ -142,7 +142,7 @@ The construct :balzac:`sig(k) of T` also applies to parametric transactions.
 This is especially useful when the parameter is the witness, like in the
 following example:
 
-.. code-block:: btm
+.. code-block:: balzac
 
 	// template for a parametric transaction
 	transaction T_template(s:signature) {
@@ -168,7 +168,7 @@ and sends the signature to a participant who collects them.
 
 For instance, assume that ``T_ABC`` requires the signatures of Alice, Bob and Carl:
 
-.. code-block:: btm
+.. code-block:: balzac
 		
     //needs three signatures to redeem  1 bitcoin
     transaction T_ABC{
@@ -178,7 +178,7 @@ For instance, assume that ``T_ABC`` requires the signatures of Alice, Bob and Ca
 
 First, all participants agree on a parametric transaction to redeem ``T_ABC``:
     
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T_template (sA:signature, sB:signature, sC:signature){
 	input = T_ABC: sA sB sC
@@ -189,7 +189,7 @@ First, all participants agree on a parametric transaction to redeem ``T_ABC``:
 Then, each participant signs ``T_template``.
 For instance, Alice performs the following actions:
 
-.. code-block:: btm
+.. code-block:: balzac
 
       //Alice's signature
       const sigA = sig(kA) of T_template(_,_,_)
@@ -200,7 +200,7 @@ For instance, Alice performs the following actions:
    
 The compiler outputs a pair, containing the signature and the public key:
 
-.. code-block:: btm
+.. code-block:: balzac
 		
     sigA		
     sig:30450...3cdb01
@@ -208,7 +208,7 @@ The compiler outputs a pair, containing the signature and the public key:
 Now, all participants send their pair to (say) Alice,
 who uses them to instantiate ``T_template`` with the actual signatures:
 
-.. code-block:: btm
+.. code-block:: balzac
 		
 	//signature of T_template made by Alice plus Alice's public key
 	const sigA = sig:304502...b01

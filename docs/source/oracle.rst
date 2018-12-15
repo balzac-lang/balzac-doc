@@ -22,7 +22,7 @@ Assume that the needed amount to pay Bob is stored in an actual
 transaction redeemable by Alice. We model that transaction in the
 editor using a *fake coinbase transaction* ``A_funds``.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // Alice's public key
     const kApub = pubkey:03ff41f23b70b1c83b01914eb223d7a97a6c2b24e9a9ef2762bf25ed1c1b83c9c3
@@ -40,7 +40,7 @@ of ``kApub``, she is the only one able to spend ``A_funds``.
 
 Then, Alice creates the transaction ``T`` that spends ``A_funds``:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // Alice's private key
     const kA = key:cSthBXr8YQAexpKeh22LB9PdextVE1UJeahmyns5LzcmMDSy59L4
@@ -57,7 +57,7 @@ Then, Alice creates the transaction ``T`` that spends ``A_funds``:
 Transaction ``T`` can be redeemed providing both the signatures of Bob and
 Oscar, respectively ``sigB`` and ``sigO``. For example, Bob creates the transaction ``T1`` as follows:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     const kB = key:cQmSz3Tj3usor9byskhpCTfrmCM5cLetLU9Xw6y2csYhxSbKDzUn
 
@@ -69,7 +69,7 @@ Oscar, respectively ``sigB`` and ``sigO``. For example, Bob creates the transact
 The parametric transaction ``T1`` must be completed with Oscar's signature.
 Oscar computes a valid signature as follows:
 
-.. code-block:: btm
+.. code-block:: balzac
     
     // Oscar's private key
     const kO = key:cPCE8spaGuXbp4JEDR4G16hL47SP2GavdgWoDTaqQGCvNbdxZdeT
@@ -93,7 +93,7 @@ To solve this problem, Alice would like to take back her bitcoins after a given 
 In order to do this, Alice can add a time constraint
 to the output script of ``T`` (we call this new one ``Ttimed``), as shown below:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     const dateD = 2018-12-31
 

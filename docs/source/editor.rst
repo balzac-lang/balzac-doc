@@ -11,7 +11,7 @@ This functionality is more useful when using the local eclipse plugin, respect t
 By default, generated files are saved in ``src-gen`` with a directory structure reflecting the package name.
 For example, declaring package ``com.example.test``, the generated files will be store in ``src-gen/com/example/test/``.
 
-.. code-block:: btm
+.. code-block:: balzac
 
         package com.example.test
 
@@ -24,7 +24,7 @@ Comments
 """"""""
 Single-line and multi-lines comments are supported. Their syntax is the same of Java.
 
-.. code-block:: btm
+.. code-block:: balzac
 
 	// <-- single line comment
 
@@ -49,7 +49,7 @@ If specified, the network declaration *must appear right after the package decla
 
 .. container:: codecompare
 
-	.. code-block:: btm
+	.. code-block:: balzac
 
 		package com.example.test
 
@@ -58,7 +58,7 @@ If specified, the network declaration *must appear right after the package decla
 		network testnet
 
 
-	.. code-block:: btm
+	.. code-block:: balzac
 
 		package com.example.test
 
@@ -76,12 +76,12 @@ For example:
 
 .. container :: codecompare
 
-	.. code-block:: btm
+	.. code-block:: balzac
 
 		const n = 42
 
 
-	.. code-block:: btm
+	.. code-block:: balzac
 
 		const n:int = 42
 
@@ -100,7 +100,7 @@ See :doc:`transactions`.
 
 	It is allowed to write:
 
-	.. code-block:: btm
+	.. code-block:: balzac
 
 		const n = 42
 
@@ -114,7 +114,7 @@ See :doc:`transactions`.
 	Cross-references are resolved independently from the declaration order, 
 	so it is allowed to write:
 
-	.. code-block:: btm
+	.. code-block:: balzac
 
 		const n = 21 * m
 		const m = 2
@@ -126,7 +126,7 @@ Evaluation
 The :balzac:`eval` statement takes a list of expression and evaluate them.
 The results are saved in text format in ``src-gen/_package-path_/transactions``.
 
-.. code-block:: btm
+.. code-block:: balzac
 
 	transaction T { /* ... */ }
 	transaction T1(a:int) { /* ... */ }

@@ -7,7 +7,7 @@ Transactions
 |langname| provides a simple syntax to express Bitcoin transactions,
 which is summarized as follows:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction txName {
         input = ...
@@ -31,7 +31,7 @@ where ``T`` is an expression of type :balzac:`transaction`,
 and ``e1 e2 e3`` are the witnesses expressions whose type must match the type
 of the parameters of the transaction output script.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction A { 
         ...
@@ -46,7 +46,7 @@ of the parameters of the transaction output script.
 Generally, the :balzac:`input` field can contains a list of ``T@n : wit``, denoted by the list delimiters ``[...]`` and separated by ``;``. Moreover, ``@n`` can be omitted and the output index is assumed to be 0.
 For example:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction B {
         input = [
@@ -73,7 +73,7 @@ where ``B`` is an expression of type :balzac:`int`,
 ``TypeX`` and ``TypeY`` are types (e.g. :balzac:`int`, :balzac:`string`, ...)
 and ``E`` is an expression of type :balzac:`boolean`.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction A { 
         ...
@@ -84,7 +84,7 @@ Generally, the :balzac:`output` field can contains a list of :balzac:`B : fun(x:
 denoted by the list delimiters ``[...]`` and separated by ``;``.
 For example:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction A {
         ...

@@ -27,7 +27,7 @@ not known at specification time.
 An example of transaction with no inputs is the following:
 
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T {
         input = _    // no input 
@@ -51,7 +51,7 @@ The output of the compiler is a serialized transaction for the Bitcoin
 test network (testnet).
 To generate transactions for the main network (mainnet), one must specify the network as follows:  
 
-.. code-block:: btm
+.. code-block:: balzac
 
     network mainnet  // default is testnet
 
@@ -68,7 +68,7 @@ The serialized transaction can  be sent to the Bitcoin network using the Bitcoin
 However, in order to be published, ``T`` must redeem a real transaction on the blockchain.
 In |langname|, it is possible to define a transaction using its hex format, for example:
 
-.. code-block:: btm
+.. code-block:: balzac
 
         const realT = tx:0000fa00120... // Hex of a real transaction
 
@@ -85,7 +85,7 @@ Redeeming a transaction
 If one needs to use the bitcoin stored within  ``T``, she  can
 redeem it with the following transaction: 
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T1 {
         input = T: 42
@@ -128,7 +128,7 @@ Usually, one wants to transfer bitcoins to a specific user.
 For instance, the following transaction ``T2``  makes the 50 BTC of  ``T1``
 redeemable only by user Alice: 
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // Alice's public key
     const pubA = pubkey:03d0272bb640bdbbcaedce10ef69ad6d9d8c7b9c61ff2aa4cf4ed27865d287c224 
@@ -149,7 +149,7 @@ computed with Alice's private key.
 
 The transaction ``T2`` can be redeemed by a transaction ``T3`` made as follows:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // Alice's private key    
     const kA = key:cVdDtCe2Gb6HWeCEzRTpZEitgxYonPtvLfGZrpprWV6BTJ3N37Lw
@@ -179,7 +179,7 @@ Multiple inputs and outputs
 Transactions can have more than one output, in order to split the money on different recipients. 
 For instance, the amount of bitcoins in ``T4`` is split in two parts: 
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // Bob's other public key
     const pubB = pubkey:0289654c430032f20f8464a84a1f9b3289ceaff8d6cd93c9b654e59a8c5a1cc1b0
@@ -199,7 +199,7 @@ Transactions can have more than one input, in case they need to gather money fro
 For each input, the transaction must provide a suitable witness. In case inputs refer to a transaction with multiple outputs, their outputs are numbered starting from 0. 
 For instance:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // Bob's private key    
     const kB = key:cVifQzXqqQ86udHggaDMz4Uq66Z7RGXJo5PdVjzRP12H1NDCFsLV
@@ -224,7 +224,7 @@ For instance, in the following example ``T6`` takes one parameter
 of type :balzac:`pubkey` and uses it in the output script.
 
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // parametric transaction
     transaction T6(pub) {
@@ -234,13 +234,13 @@ of type :balzac:`pubkey` and uses it in the output script.
 
 To be able to evaluate ``T6``, one must instantiate that one parameter, like:
     
-.. code-block:: btm
+.. code-block:: balzac
 
     eval T6(pubA)
 
 One can also use T6 in the definition of its redeeming transaction, as follows:
     
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T7 {
         input = T6(pubA): sig(kA)
@@ -251,7 +251,7 @@ In case the parameter is a witness, it can be left unspecified as long
 as it is needed, using the symbol ``_``. For instance, transaction
 ``T9`` is obtained by ``T8``, without providing a witness :
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T8(s:signature, n:int) {
         input = T7: s 
@@ -265,7 +265,7 @@ The generation of a signature inside a transaction is done at
 compilation time, so that all the parameters have been instantiated.
 Indeed:    
     
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T8_bis(n:int) {
         input = T7: sig(kB)

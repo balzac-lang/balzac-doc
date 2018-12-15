@@ -32,7 +32,7 @@ Alice starts defining some constants:
 - ``deposit`` is the amount of bitcoins that Alice will lose if she will not reveal her secret; 
 - ``deadline`` is the deadline for revealing her secret.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // some constants
     const fee = 0.00113 BTC     // miner's fee
@@ -50,7 +50,7 @@ For example, assume that there exists a transaction ``A_funds`` on the blockchai
 it has exactly one output script, which is a simple P2PKH (Pay to Public Key Hash)
 for the public key ``kApub`` of Alice.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // Alice's public key
     const kApub = pubkey:03ff41f23b70b1c83b01914eb223d7a97a6c2b24e9a9ef2762bf25ed1c1b83c9c3
@@ -64,7 +64,7 @@ However, if we don't have a real transaction, we can create a *fake coinbase tra
 This transaction cannot be really published on the blockchain, but it is useful to check if the transactions
 we are building are correct.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // tx with Alice's funds, redeemable with kA
     transaction A_funds { input = _ output = deposit: fun(sigma) . versig(kApub; sigma)}
@@ -82,7 +82,7 @@ is set as witness in ``T_commit``.
 
 The transaction ``T_commit`` looks like:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // Alice's private key
     const kA = key:cSthBXr8YQAexpKeh22LB9PdextVE1UJeahmyns5LzcmMDSy59L4
@@ -109,7 +109,7 @@ In the first case, she can create the transaction ``T_reveal`` and put it on the
 Since it redeems  ``T_commit`` , she needs to provide the ``secret`` and her signature, 
 so making the former public.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     transaction T_reveal {
         input =  T_commit: sig(kA) secret
@@ -118,13 +118,13 @@ so making the former public.
 
 We can evaluate Alice's transactions as follows.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     eval T_commit, T_reveal
 
 To sum up, the whole file is:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // some constants
     const fee = 0.00113 BTC     // miner's fee
@@ -177,7 +177,7 @@ Bob needs:
 The first condition is quite obvious, since we need to specify which transaction is ``T_timeout`` spending.
 One can specify ``T_commit`` as follows:
 
-.. code-block:: btm
+.. code-block:: balzac
 
     const T_commit = tx:02000000010bb...    // specify the transaction body
 
@@ -194,7 +194,7 @@ e.g. ``[fun(x) . x == 42]``, alongside the witnesses.
 
 The example below shows how to create Bob's ``T_timeout`` transaction.
 
-.. code-block:: btm
+.. code-block:: balzac
 
     // some constants
     const fee = 0.00113 BTC     // miner's fee
