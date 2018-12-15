@@ -101,7 +101,7 @@ Within this transaction Alice is committing the hash of the chosen secret:
 indeed, ``h`` is encoded within the output script of the transaction.
 This transaction can be redeemed either by Alice by revealing her secret,
 or by Bob, but only after the ``deadline`` has passed.
-This constraint is encoded in the script with the expression :btm:`after date deadline : ...`.
+This constraint is encoded in the script with the expression :balzac:`after date deadline : ...`.
 
 Once the transaction ``T_commit`` is on the blockchain, 
 Alice chooses whether to reveal the secret, or do nothing. 

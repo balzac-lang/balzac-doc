@@ -20,7 +20,7 @@ each literal corresponds to a specific type.
 
 Integers
 ^^^^^^^^
-Integers are 64-bit signed numbers, whose type is :btm:`int`.
+Integers are 64-bit signed numbers, whose type is :balzac:`int`.
 Integers syntax is Java-like: digits can be separated with ``_`` to improve readability
 and hexadecimal numbers are prefixed with ``0x`` or ``0X``.
 
@@ -39,7 +39,7 @@ Dates and Delays
 |langname| provides two different ways to express integers, in order to improve readability
 and avoid errors: **dates** and **delays**.
 
-**Dates** are parsed as integers and represent the amount of seconds that have been passed since :btm:`1970-01-01T00:00:00`.
+**Dates** are parsed as integers and represent the amount of seconds that have been passed since :balzac:`1970-01-01T00:00:00`.
 |langname| supports three different datetime format from `Java DateTime <https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html>`_:
 
 * ``DateTimeFormatter.ISO_LOCAL_DATE`` (e.g. ``2018-01-31``)
@@ -77,7 +77,7 @@ The parsing rules are straightforward and conversions are done at parsing time:
 
 Strings
 ^^^^^^^
-Strings are sequence of characters, whose type is :btm:`string`.
+Strings are sequence of characters, whose type is :balzac:`string`.
 Strings are enclosed by ``"`` or ``'``.
 
 .. code-block:: btm
@@ -89,14 +89,14 @@ Strings are enclosed by ``"`` or ``'``.
 
 Booleans
 ^^^^^^^^
-Booleans consists of two possible values: :btm:`true` and :btm:`false`.
-Their type is :btm:`boolean` (or :btm:`bool` for brevity).
+Booleans consists of two possible values: :balzac:`true` and :balzac:`false`.
+Their type is :balzac:`boolean` (or :balzac:`bool` for brevity).
 
 
 Hashes
 ^^^^^^
-Hashes are sequences of hexdecimal data, whose type is :btm:`hash`.
-Hashes are represented using the prefix :btm:`hash:` followed by the hash in
+Hashes are sequences of hexdecimal data, whose type is :balzac:`hash`.
+Hashes are represented using the prefix :balzac:`hash:` followed by the hash in
 hexadecimal format. The number of digits is not limited but must be even.
 
 .. code-block:: btm
@@ -110,8 +110,8 @@ See :ref:`Hash Functions <label_hash_functions>` for generating an hash value in
 
 Signatures
 ^^^^^^^^^^
-Signatures are sequences of hexadecimal data, whose type is :btm:`signature`.
-Signatures are represented using the prefix :btm:`sig:` followed by the raw data in
+Signatures are sequences of hexadecimal data, whose type is :balzac:`signature`.
+Signatures are represented using the prefix :balzac:`sig:` followed by the raw data in
 hexadecimal format. The number of digits is not limited but must be even.
 
 .. code-block:: btm
@@ -125,7 +125,7 @@ See :ref:`Cryptographic Functions <label_c_functions>` for generating a signatur
 Private keys
 ^^^^^^^^^^^^
 Private keys are represented in the Wallet Import Format (WIF) [#wif]_.
-Their type is :btm:`key` and can be expressed using the prefix :btm:`key:`
+Their type is :balzac:`key` and can be expressed using the prefix :balzac:`key:`
 followed by the WIF.
 
 Note that WIF encodes the network identifier, so the same private key has a
@@ -144,8 +144,8 @@ allows to create new random keys (generated server side).
 
 Public keys
 ^^^^^^^^^^^
-Public keys are sequences of hexadecimal data, whose type is :btm:`pubkey`.
-Public keys are represented using the prefix :btm:`pubkey:` followed by the raw data in
+Public keys are sequences of hexadecimal data, whose type is :balzac:`pubkey`.
+Public keys are represented using the prefix :balzac:`pubkey:` followed by the raw data in
 hexadecimal format. The number of digits is not limited but must be even.
 
 The sidebar of the `online editor <http://blockchain.unica.it/balzac/>`_
@@ -161,7 +161,7 @@ Addresses
 ^^^^^^^^^
 Addresses are represented in the Wallet Import Format (WIF) [#wif]_.
 Addresses are obtained from hashing the public key and encoded in WIF.
-Their type is :btm:`address` and can be expressed using the prefix :btm:`address:`
+Their type is :balzac:`address` and can be expressed using the prefix :balzac:`address:`
 followed by the WIF.
 
 As for private keys, WIF encodes the network identifier, so the same address has a
@@ -181,8 +181,8 @@ allows to create new random addresses (generated server side).
 
 Transactions
 ^^^^^^^^^^^^
-Transactions can be expressed using the prefix :btm:`tx:` followed by the serialized
-transaction data in hexadecimal format. Transactions have type :btm:`transaction`.
+Transactions can be expressed using the prefix :balzac:`tx:` followed by the serialized
+transaction data in hexadecimal format. Transactions have type :balzac:`transaction`.
 
 |langname| features new transaction creation, as explained in section :doc:`Transactions <transactions>`.
 
@@ -198,7 +198,7 @@ The syntax is Java-like: ``&&``, ``||`` and ``!`` respectively for and/or/not op
 
 The precedence is: ``!`` > ``&&`` > ``||``.
 
-The type for a boolean operation is :btm:`bool` and the type system ensures that
+The type for a boolean operation is :balzac:`bool` and the type system ensures that
 both the operands are of that type.
 
 .. code-block:: btm
@@ -214,12 +214,12 @@ The syntax is Java-like:
 
 - ``a == b``: *true* if ``a`` and ``b`` are equals, *false* otherwise; ``a`` and ``b`` must have the same type
 - ``a != b``: *true* if ``a`` and ``b`` are not equals, *false* otherwise; ``a`` and ``b`` must have the same type
-- ``a + b``: sum ``a`` and ``b``; both must be :btm:`int`
-- ``a - b``: subtract ``b`` from ``a``; both must be :btm:`int`
-- ``a < b``: *true* if ``a`` is less than ``b``, *false* otherwise (similarly for ``<=``, ``>``, ``>=``); both must be :btm:`int`
-- ``a * b``: multiply ``a`` from ``b``; both must be :btm:`int`
-- ``a / b``: divide ``a`` by ``b`` (truncate); both must be :btm:`int`
-- ``-a``: negate ``a``; it must be :btm:`int`
+- ``a + b``: sum ``a`` and ``b``; both must be :balzac:`int`
+- ``a - b``: subtract ``b`` from ``a``; both must be :balzac:`int`
+- ``a < b``: *true* if ``a`` is less than ``b``, *false* otherwise (similarly for ``<=``, ``>``, ``>=``); both must be :balzac:`int`
+- ``a * b``: multiply ``a`` from ``b``; both must be :balzac:`int`
+- ``a / b``: divide ``a`` by ``b`` (truncate); both must be :balzac:`int`
+- ``-a``: negate ``a``; it must be :balzac:`int`
 
 The precedence is: ``- (unary)`` > ``*`` ``/`` > ``+`` ``-`` > ``==`` ``!=`` > ``<`` ``>`` ``<=`` ``>=``.
 
@@ -232,8 +232,8 @@ The precedence is: ``- (unary)`` > ``*`` ``/`` > ``+`` ``-`` > ``==`` ``!=`` > `
 ---
 BTC
 ---
-The expression :btm:`e BTC`, where ``e`` has type :btm:`int`, multiply ``e`` by ``10^8``.
-The return type is :btm:`int`.
+The expression :balzac:`e BTC`, where ``e`` has type :balzac:`int`, multiply ``e`` by ``10^8``.
+The return type is :balzac:`int`.
 
 Optionally, ``e`` can be followed by a decimal part ``. INT``, where ``INT`` is a max 8-digit number (not an expression).
 
@@ -254,7 +254,7 @@ or a script parameter or a transaction parameter (TODO: link).
 
 The type of a reference depends on the referred object.
 
-A transaction reference has always type :btm:`transaction`,
+A transaction reference has always type :balzac:`transaction`,
 while a constant reference has the same type of the declared constant expression.
 A parameter reference has the same type of the parameter it refers to.
 
@@ -288,7 +288,7 @@ and the type of the actual parameters must match the formal one.
 
 This
 ^^^^
-The keyword :btm:`this` can be used to refer the current transaction from
+The keyword :balzac:`this` can be used to refer the current transaction from
 the inside.
 
 See :ref:`Transaction Operations <label_tx_operations>` for concrete use.
@@ -296,13 +296,13 @@ See :ref:`Transaction Operations <label_tx_operations>` for concrete use.
 -----------
 Conditional 
 -----------
-The conditional statement is expressed as :btm:`if expIf then expThen else expElse`.
-It is an expression: it evaluates ``expThen`` if ``expIf`` evaluates :btm:`true`,
+The conditional statement is expressed as :balzac:`if expIf then expThen else expElse`.
+It is an expression: it evaluates ``expThen`` if ``expIf`` evaluates :balzac:`true`,
 ``expThen`` otherwise.
 Note: the *else* branch cannot be omitted.
 
-The type for conditional :btm:`if expIf then expThen else expElse` is ``a'``,
-where :btm:`bool` is the type for ``expIf`` and ``a'`` is the type of both ``expThen`` and ``expElse``.
+The type for conditional :balzac:`if expIf then expThen else expElse` is ``a'``,
+where :balzac:`bool` is the type for ``expIf`` and ``a'`` is the type of both ``expThen`` and ``expElse``.
 
 
 .. code-block:: btm
@@ -325,8 +325,8 @@ in the Bitcoin scripting language.
 
 Max
 ^^^
-The maximum of two numbers can be expresses as :btm:`max(a,b)`.
-This expression has type :btm:`int` and expects that ``a`` and ``b`` have type :btm:`int`.
+The maximum of two numbers can be expresses as :balzac:`max(a,b)`.
+This expression has type :balzac:`int` and expects that ``a`` and ``b`` have type :balzac:`int`.
 
 .. code-block:: btm
 
@@ -336,8 +336,8 @@ This expression has type :btm:`int` and expects that ``a`` and ``b`` have type :
 
 Min
 ^^^
-The minimum of two numbers can be expresses as :btm:`min(a,b)`.
-This expression has type :btm:`int` and expects that ``a`` and ``b`` have type :btm:`int`.
+The minimum of two numbers can be expresses as :balzac:`min(a,b)`.
+This expression has type :balzac:`int` and expects that ``a`` and ``b`` have type :balzac:`int`.
 
 
 .. code-block:: btm
@@ -347,8 +347,8 @@ This expression has type :btm:`int` and expects that ``a`` and ``b`` have type :
 
 Between
 ^^^^^^^
-The expression :btm:`between(x,min:max)` checks a number `x` is in range ``[min,max]``.
-This expression has type :btm:`bool` and expects that ``x``, ``min`` and ``max`` have type :btm:`int`.
+The expression :balzac:`between(x,min:max)` checks a number `x` is in range ``[min,max]``.
+This expression has type :balzac:`bool` and expects that ``x``, ``min`` and ``max`` have type :balzac:`int`.
 
 
 .. code-block:: btm
@@ -359,8 +359,8 @@ This expression has type :btm:`bool` and expects that ``x``, ``min`` and ``max``
 
 Size
 ^^^^
-The :btm:`size(n)` expression returns the size of `n` in bytes.
-This expression has type :btm:`int` and expects that ``n``  is well typed.
+The :balzac:`size(n)` expression returns the size of `n` in bytes.
+This expression has type :balzac:`int` and expects that ``n``  is well typed.
 
 This expression corresponds to ``⌈(log2 |n| / 7)⌉``.
 
@@ -374,9 +374,9 @@ Hash functions
 
 Sha1
 ^^^^
-The expression :btm:`sha1(exp)`, where ``exp`` has type 
-:btm:`int`, :btm:`string`, :btm:`boolean` or :btm:`hash`, returns a
-SHA-1 digest (type :btm:`hash`).
+The expression :balzac:`sha1(exp)`, where ``exp`` has type 
+:balzac:`int`, :balzac:`string`, :balzac:`boolean` or :balzac:`hash`, returns a
+SHA-1 digest (type :balzac:`hash`).
 
 .. code-block:: btm
 
@@ -390,9 +390,9 @@ SHA-1 digest (type :btm:`hash`).
 
 Sha256
 ^^^^^^
-The expression :btm:`sha256(exp)`, where ``exp`` has type 
-:btm:`int`, :btm:`string`, :btm:`boolean` or :btm:`hash`, returns a
-SHA-256 digest (type :btm:`hash`).
+The expression :balzac:`sha256(exp)`, where ``exp`` has type 
+:balzac:`int`, :balzac:`string`, :balzac:`boolean` or :balzac:`hash`, returns a
+SHA-256 digest (type :balzac:`hash`).
 
 .. code-block:: btm
 
@@ -406,9 +406,9 @@ SHA-256 digest (type :btm:`hash`).
 
 Ripemd160
 ^^^^^^^^^
-The expression :btm:`ripemd160(exp)`, where ``exp`` has type 
-:btm:`int`, :btm:`string`, :btm:`boolean` or :btm:`hash`, returns a
-RIPEMD-160 digest (type :btm:`hash`).
+The expression :balzac:`ripemd160(exp)`, where ``exp`` has type 
+:balzac:`int`, :balzac:`string`, :balzac:`boolean` or :balzac:`hash`, returns a
+RIPEMD-160 digest (type :balzac:`hash`).
 
 .. code-block:: btm
 
@@ -422,10 +422,10 @@ RIPEMD-160 digest (type :btm:`hash`).
 
 Hash256
 ^^^^^^^
-The expression :btm:`hash256(exp)`, where ``exp`` has type 
-:btm:`int`, :btm:`string`, :btm:`boolean` or :btm:`hash`, applies
-the SHA-256 algorithm twice, returning :btm:`hash`.
-It is equivalent to :btm:`sha256(sha256(exp))`.
+The expression :balzac:`hash256(exp)`, where ``exp`` has type 
+:balzac:`int`, :balzac:`string`, :balzac:`boolean` or :balzac:`hash`, applies
+the SHA-256 algorithm twice, returning :balzac:`hash`.
+It is equivalent to :balzac:`sha256(sha256(exp))`.
 
 .. code-block:: btm
 
@@ -439,10 +439,10 @@ It is equivalent to :btm:`sha256(sha256(exp))`.
 
 Hash160
 ^^^^^^^
-The expression :btm:`hash160(exp)`, where ``exp`` has type 
-:btm:`int`, :btm:`string`, :btm:`boolean` or :btm:`hash`, applies
-the SHA-256 algorithm followed by RIPEMD-160, returning :btm:`hash`.
-It is equivalent to :btm:`ripemd160(sha256(exp))`.
+The expression :balzac:`hash160(exp)`, where ``exp`` has type 
+:balzac:`int`, :balzac:`string`, :balzac:`boolean` or :balzac:`hash`, applies
+the SHA-256 algorithm followed by RIPEMD-160, returning :balzac:`hash`.
+It is equivalent to :balzac:`ripemd160(sha256(exp))`.
 
 .. code-block:: btm
 
@@ -456,19 +456,19 @@ It is equivalent to :btm:`ripemd160(sha256(exp))`.
 --------------
 Key Operations
 --------------
-Key operations allows to convert private keys in public ones, through :btm:`toPubkey`,
-and private/public keys in addresses, through :btm:`toAddress`.
+Key operations allows to convert private keys in public ones, through :balzac:`toPubkey`,
+and private/public keys in addresses, through :balzac:`toAddress`.
 
 However, consider that |langname| performs type coercion for keys, if possible:
-when a public key is required (e.g. :btm:`versig` expression),
+when a public key is required (e.g. :balzac:`versig` expression),
 it is possible to use a private one; when an address is requires,
 both a private key and a public one can be used.
 
 toPubkey
 ^^^^^^^^^
 
-The expression :btm:`k.toPubkey`, where ``k`` is an expression of type :btm:`key`, returns the public key of ``k``.
-The return type is :btm:`pubkey`.
+The expression :balzac:`k.toPubkey`, where ``k`` is an expression of type :balzac:`key`, returns the public key of ``k``.
+The return type is :balzac:`pubkey`.
 
 .. code-block:: btm
 
@@ -480,8 +480,8 @@ The return type is :btm:`pubkey`.
 toAddress
 ^^^^^^^^^
 
-The expression :btm:`k.toAddress`, where ``k`` is an expression of type :btm:`key` or :btm:`pubkey`, returns the public key of ``k``.
-The return type is :btm:`address`.
+The expression :balzac:`k.toAddress`, where ``k`` is an expression of type :balzac:`key` or :balzac:`pubkey`, returns the public key of ``k``.
+The return type is :balzac:`address`.
 
 .. code-block:: btm
 
@@ -507,8 +507,8 @@ and verify that a given signature is valid against a public key.
 Transaction signature
 ^^^^^^^^^^^^^^^^^^^^^
 
-The expression :btm:`sig(k) of T`, where ``k`` has type :btm:`key` and ``T`` has type :btm:`transaction`,
-generates a new signature. The result type is :btm:`signature`.
+The expression :balzac:`sig(k) of T`, where ``k`` has type :balzac:`key` and ``T`` has type :balzac:`transaction`,
+generates a new signature. The result type is :balzac:`signature`.
 
 .. code-block:: btm
     :emphasize-lines: 14,15
@@ -534,11 +534,11 @@ generates a new signature. The result type is :btm:`signature`.
 
     Signatures are commonly used for redeeming an output script,
     **which must be part of the signature** in Bitcoin.
-    So, for a generic :btm:`sig(k) of T@n`, the output script is retrieved from input ``n`` of  ``T``.
+    So, for a generic :balzac:`sig(k) of T@n`, the output script is retrieved from input ``n`` of  ``T``.
 
-    In the previous example, :btm:`sig(kA) of T` is bound to input ``0`` and
-    the output script ``TA@0`` (i.e. :btm:`fun(x) . x == 42` ) is part of the signature.
-    The expression :btm:`sig(kA) of TA` fails because ``TA`` is a coinbase,
+    In the previous example, :balzac:`sig(kA) of T` is bound to input ``0`` and
+    the output script ``TA@0`` (i.e. :balzac:`fun(x) . x == 42` ) is part of the signature.
+    The expression :balzac:`sig(kA) of TA` fails because ``TA`` is a coinbase,
     so there is not connected output script.
 
 
@@ -548,8 +548,8 @@ Bitcoin signatures are more complicated: they support different **transaction mo
 and are bound to a **specific index**, that is the index of the input in which the signature will
 be added.
 
-The more general form is :btm:`sig(k)[MODIFIER] of T@INT`, where :btm:`MODIFIER := AIAO|AISO|AINO|SIAO|SISO|SINO`
-and ``INT`` is an integer (note that it is not an expression of type :btm:`int`).
+The more general form is :balzac:`sig(k)[MODIFIER] of T@INT`, where :balzac:`MODIFIER := AIAO|AISO|AINO|SIAO|SISO|SINO`
+and ``INT`` is an integer (note that it is not an expression of type :balzac:`int`).
 Modifier and input index can be both omitted. If omitted, the modifier is ``AIAO``, while the index is ``0``.
 
 Each modifier is composed by two parts, ``*I`` and ``*O``, indicating respectively the subset of inputs and of outputs being signed.
@@ -605,17 +605,17 @@ when the expression is used within a transaction, that is:
 
 In this case, the transaction and the input index are omitted and automatically
 refer to the containing transaction ``T`` and input index ``0``.
-Differently from :btm:`sig(k) of T`, the signature :btm:`sig(kA)` is computed **lazily**,
+Differently from :balzac:`sig(k) of T`, the signature :balzac:`sig(kA)` is computed **lazily**,
 when evaluating the transaction ``T``.
 
 
 Signature Verification
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The expression :btm:`versig(k1,...,kn; s1,...,sm)`,
-where the expressions ``k1`` ... ``kn`` have type :btm:`pubkey` and ``s1`` ... ``sm`` have type :btm:`signature` with ``n <= m``,
-evaluates :btm:`true` if the given signatures are valid against the provided keys,
-:btm:`false` otherwise. The result type is :btm:`bool`.
+The expression :balzac:`versig(k1,...,kn; s1,...,sm)`,
+where the expressions ``k1`` ... ``kn`` have type :balzac:`pubkey` and ``s1`` ... ``sm`` have type :balzac:`signature` with ``n <= m``,
+evaluates :balzac:`true` if the given signatures are valid against the provided keys,
+:balzac:`false` otherwise. The result type is :balzac:`bool`.
 
 This expression can appear only within the script of a transaction output. 
 
@@ -645,7 +645,7 @@ This expression can appear only within the script of a transaction output.
 Multi-signature verification
 """"""""""""""""""""""""""""
 
-The expression :btm:`versig(k1,...,kn; s1,...,sm)` is called **m-of-n signature verification**,
+The expression :balzac:`versig(k1,...,kn; s1,...,sm)` is called **m-of-n signature verification**,
 since all the **m** signatures must be valid against the list of **n** public keys.
 
 Its implementation is the same as Bitcoin: the function tries to verify the last signature with the last key. 
@@ -673,7 +673,7 @@ For example, consider a *2-of-3* signature scheme:
         output = 1BTC: fun(x, y). versig(kApub, kBpub, kCpub; x, y)
     }
 
-The output script  :btm:`versig(kApub, kBpub, kCpub; x, y)` evaluates true
+The output script  :balzac:`versig(kApub, kBpub, kCpub; x, y)` evaluates true
 if  ``x`` and ``y``  respect the keys order.
 
 .. code-block:: btm
@@ -729,7 +729,7 @@ That time can be either a **block number** or a **timestamp** (in seconds).
 
 CheckBlock
 """"""""""
-The expression :btm:`checkBlock blockN : exp`, where ``blockN`` has type :btm:`int` and
+The expression :balzac:`checkBlock blockN : exp`, where ``blockN`` has type :balzac:`int` and
 ``exp`` has type *T*, evaluates ``exp`` if the redeeming transaction has
 a block absolute timelock greater than ``blockN``, fails otherwise. Its type is *T*.
 
@@ -761,7 +761,7 @@ Moreover, the Bitcoin specification imposes that ``blockN < 500_000_000``.
 
 CheckDate
 """""""""
-The expression :btm:`checkDate date : exp`, where ``date`` has type :btm:`int` and
+The expression :balzac:`checkDate date : exp`, where ``date`` has type :balzac:`int` and
 ``exp`` has type *T*, evaluates ``exp`` if the redeeming transaction has
 a block absolute timelock greater than ``date``, fails otherwise. Its type is *T*.
 
@@ -801,7 +801,7 @@ That delay can be either a **block number** or a **time delay** (in seconds).
 
 checkBlockDelay
 """""""""""""""
-The expression :btm:`checkBlockDelay blockN : exp`, where ``blockN`` has type :btm:`int` and
+The expression :balzac:`checkBlockDelay blockN : exp`, where ``blockN`` has type :balzac:`int` and
 ``exp`` has type *T*, evaluates ``exp`` if the redeeming transaction has
 a block relative timelock greater than ``blockN``, fails otherwise. Its type is *T*.
 
@@ -831,7 +831,7 @@ Moreover, the Bitcoin specification imposes that ``blockN < 65535``.
 
 checkBlockDelay
 """""""""""""""
-The expression :btm:`checkTimeDelay seconds : exp`, where ``seconds`` has type :btm:`int` and
+The expression :balzac:`checkTimeDelay seconds : exp`, where ``seconds`` has type :balzac:`int` and
 ``exp`` has type *T*, evaluates ``exp`` if the redeeming transaction has
 a time relative timelock greater than ``seconds``, fails otherwise. Its type is *T*.
 
@@ -870,12 +870,12 @@ Transaction operations
 
 Input Value
 ^^^^^^^^^^^
-The expression :btm:`T.input.value`, where ``T`` is an expression
-of type :btm:`transaction`, returns the sum (type :btm:`int`) of the output values that
+The expression :balzac:`T.input.value`, where ``T`` is an expression
+of type :balzac:`transaction`, returns the sum (type :balzac:`int`) of the output values that
 ``T`` is redeeming.
 
 If a transaction spends more than one output, the user can specify
-which input consider as :btm:`T.input(i,j,...).value`.
+which input consider as :balzac:`T.input(i,j,...).value`.
 
 .. code-block:: btm
 
@@ -905,12 +905,12 @@ which input consider as :btm:`T.input(i,j,...).value`.
 
 Output Value
 ^^^^^^^^^^^^
-The expression :btm:`T.output.value`, where ``T`` is an expression
-of type :btm:`transaction`, returns the sum (type :btm:`int`) of the output values of
+The expression :balzac:`T.output.value`, where ``T`` is an expression
+of type :balzac:`transaction`, returns the sum (type :balzac:`int`) of the output values of
 ``T``.
 
 If a transaction has more than one output, the user can specify
-which output consider as :btm:`T.output(i,j,...).value`.
+which output consider as :balzac:`T.output(i,j,...).value`.
 
 .. code-block:: btm
 
@@ -936,11 +936,11 @@ which output consider as :btm:`T.output(i,j,...).value`.
 
 Example: fees and reminders
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The following example shows how the keyword :btm:`this` can be used inside
+The following example shows how the keyword :balzac:`this` can be used inside
 a transaction to access its input or output value.
 
 Remember that :ref:`this <label_this>` refers to transaction in which it is used.
-The benefit of using :btm:`this` is that it simplifies handling transaction
+The benefit of using :balzac:`this` is that it simplifies handling transaction
 fees and reminders. Consider the following example:
 
 .. code-block:: btm
@@ -967,7 +967,7 @@ fees and reminders. Consider the following example:
         ]
     }
 
-Alice owns :btm:`10 BTC` and she wants to send :btm:`1 BTC` to Bob.
+Alice owns :balzac:`10 BTC` and she wants to send :balzac:`1 BTC` to Bob.
 She creates a transaction ``T`` with two outputs: the first one pays
 Bob; the second one gives Alice the remaining bitcoins back,
 minus some fee that are left to the miner.
@@ -1006,7 +1006,7 @@ Consider the following example:
 Transaction ``T`` is parametric: it takes a signature ``s`` and an integer ``n``
 and uses them as witnesses to redeem the transaction ``Coinbase``.
 In order to compute a valid ``s``, we must instantiate ``T`` with its
-actual parameters, otherwise the expression :btm:`sig(k) of T` complains
+actual parameters, otherwise the expression :balzac:`sig(k) of T` complains
 with an error. Since ``s`` and ``n`` are witnesses in ``T``,
 their value does not affect the computation of the signature,
 and it is convenient to use ``_`` to express that we don't care what their value is.
@@ -1014,11 +1014,11 @@ Also, consider that the actual parameter for ``s`` is exactly the value
 we want to compute.
 
 The output script of ``T`` takes two parameter ``y`` and ``s`` respectively of
-type :btm:`signature` and :btm:`int`. The script evaluates true
+type :balzac:`signature` and :balzac:`int`. The script evaluates true
 either providing a valid signature for ``kpub``,
-or providing a secret ``s`` after the date :btm:`2019-01-01`
-whose :btm:`sha256` is equal to
-:btm:`hash:684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1`.
+or providing a secret ``s`` after the date :balzac:`2019-01-01`
+whose :balzac:`sha256` is equal to
+:balzac:`hash:684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1`.
 
 .. code-block:: btm
 

@@ -12,8 +12,8 @@ who receives bitcoins.
 the  sidebar of the `web editor <http://blockchain.unica.it/btm/>`_.
  
 In |langname|,   keys and addresses are typed:
-the type is :btm:`pubkey` for public keys, :btm:`key` for private keys, and
-:btm:`address` for  addresses. 
+the type is :balzac:`pubkey` for public keys, :balzac:`key` for private keys, and
+:balzac:`address` for  addresses. 
 
 .. code-block:: btm
 
@@ -39,10 +39,10 @@ and verify other users' identity with the predicate
 Verifying signatures
 """"""""""""""""""""
 
-The :ref:`predicate <label_c_functions>` :btm:`versig(kpub; x)` takes two parameters: a public key ``kpub`` and the signature ``x`` of the redeeming transaction.
+The :ref:`predicate <label_c_functions>` :balzac:`versig(kpub; x)` takes two parameters: a public key ``kpub`` and the signature ``x`` of the redeeming transaction.
 The predicate  is  true if the signature ``x``  has been made with the
 private key corresponding to ``kpub``.
-For instance, the following transaction transfers :btm:`1 BTC` to a transaction
+For instance, the following transaction transfers :balzac:`1 BTC` to a transaction
 signed by Alice:
 
 .. code-block:: btm
@@ -54,8 +54,8 @@ signed by Alice:
     }
 
 
-One can use :btm:`versig` to check multiple signatures.
-For instance, in the following transaction the predicate :btm:`versig(kApub, kBpub; x, y)` is true if  ``x`` is  Alice's signature and  ``y`` is Bob's.
+One can use :balzac:`versig` to check multiple signatures.
+For instance, in the following transaction the predicate :balzac:`versig(kApub, kBpub; x, y)` is true if  ``x`` is  Alice's signature and  ``y`` is Bob's.
 
 
 .. code-block:: btm
@@ -66,20 +66,20 @@ For instance, in the following transaction the predicate :btm:`versig(kApub, kBp
 		output = 1 BTC: fun(x, y). versig(kApub, kBpub; x, y)
 	}
 
-In cases (like the one above) where :btm:`versig` checks multiple signatures,
+In cases (like the one above) where :balzac:`versig` checks multiple signatures,
 one cannot use addresses.
 
-In general, :btm:`versig (lk;ls)` verifies the list ``ls`` of signatures
+In general, :balzac:`versig (lk;ls)` verifies the list ``ls`` of signatures
 against the list ``lk`` of keys.  
 The order of elements in these lists matters.
-Indeed,  :btm:`versig` tries  to verify the last signature in ``ls``
+Indeed,  :balzac:`versig` tries  to verify the last signature in ``ls``
 with the last key in ``lk``.
 If they match, it    verifies  the previous signature in the
 list against the previous key;
 otherwise it verifies the same signature with the previous
 key.
 
-In this way, :btm:`versig`  can model complex  conditions, like
+In this way, :balzac:`versig`  can model complex  conditions, like
 a *2-of-3* multi signature scheme: 
 
 .. code-block:: btm
@@ -90,11 +90,11 @@ a *2-of-3* multi signature scheme:
 	}
 
 
-The predicate  :btm:`versig(kApub, kBpub, kCpub; x, y)` is true
+The predicate  :balzac:`versig(kApub, kBpub, kCpub; x, y)` is true
 if  ``x`` and ``y``  can match two of the three  keys.
 For instance, if  ``sigC`` and ``sigB`` are  Carl's and  Bob's signatures, then
-:btm:`versig(kApub, kBpub, kCpub; sigB, sigC)` is true, while
-:btm:`versig(kApub, kBpub, kCpub; sigC, sigB)` is false. 
+:balzac:`versig(kApub, kBpub, kCpub; sigB, sigC)` is true, while
+:balzac:`versig(kApub, kBpub, kCpub; sigC, sigB)` is false. 
 
 
 
@@ -111,12 +111,12 @@ We can redeem ``A_funds`` with a  transaction ``TA`` made as follows:
 		output = 1 BTC: fun(x). versig(kApub; x) // any condition 
 	}
 
-The value :btm:`sig(kA)` within the :btm:`input` field is the signature of Alice
+The value :balzac:`sig(kA)` within the :balzac:`input` field is the signature of Alice
 on ``TA``.
 The signature applies to all the fields of the transaction *but* the witnesses.
 The actual signature is generated when compiling the transaction.
 
-Alternatively, we can use :btm:`sig(kA) of TA` to generate the signature
+Alternatively, we can use :balzac:`sig(kA) of TA` to generate the signature
 outside the transaction:
 
 .. code-block:: btm
@@ -138,7 +138,7 @@ Note that the witness in ``TA`` is Alice's signature of ``T``:
 indeed, the two transactions
 have the same signature, since their input and output fields are the same.
 
-The construct :btm:`sig(k) of T` also applies to parametric transactions.
+The construct :balzac:`sig(k) of T` also applies to parametric transactions.
 This is especially useful when the parameter is the witness, like in the
 following example:
 

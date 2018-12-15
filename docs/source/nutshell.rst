@@ -34,10 +34,10 @@ An example of transaction with no inputs is the following:
         output = 50 BTC: fun(x) . x == 42
     }
 
-The output field of transaction ``T`` contains a value, :btm:`50 BTC`, and 
-an *output script*,  :btm:`fun(x) . x==42`.
+The output field of transaction ``T`` contains a value, :balzac:`50 BTC`, and 
+an *output script*,  :balzac:`fun(x) . x==42`.
 This means that  50 bitcoins will  be transferred to any transaction
-which provides a *witness*  ``x``  such that :btm:`x == 42`.
+which provides a *witness*  ``x``  such that :balzac:`x == 42`.
 
 To append ``T`` to the Bitcoin blockchain,
 the placeholder ``_`` for the input must be replaced with the identifier
@@ -56,7 +56,7 @@ To generate transactions for the main network (mainnet), one must specify the ne
     network mainnet  // default is testnet
 
 
-For instance, let us paste transaction ``T`` into the editor and then let us add command :btm:`eval T` to it. 
+For instance, let us paste transaction ``T`` into the editor and then let us add command :balzac:`eval T` to it. 
 Now, if we hit the button [Compile], the web editor shows in the output box the transaction ``T``  in  Bitcoin (testnet) serialization format.
 
 .. figure:: _static/img/compiling_t.png
@@ -92,16 +92,16 @@ redeem it with the following transaction:
         output = 50 BTC: fun(x). x != 0  // any constraint chosen by the user
     }
 
-Transaction ``T1`` redeems  ``T`` by indicating it  in the  :btm:`input` field,
+Transaction ``T1`` redeems  ``T`` by indicating it  in the  :balzac:`input` field,
 and by providing the number 42 as *witness*. 
-The value 42 is the actual parameter which  replaces the formal parameter ``x`` in the  output script :btm:`fun(x) . x == 42`,  and makes the script evaluate to true.
+The value 42 is the actual parameter which  replaces the formal parameter ``x`` in the  output script :balzac:`fun(x) . x == 42`,  and makes the script evaluate to true.
 Any other witness would make the script evaluate to false,
 and would prevent the transaction ``T1`` from being added to the blockchain. 
 A transaction cannot be spent twice:
 hence, once ``T1`` is on the blockchain,
 no other transaction having ``T`` as input can be appended.
 
-Note that ``T1`` is redeeming exactly the :btm:`50 BTC` deposited in ``T``:
+Note that ``T1`` is redeeming exactly the :balzac:`50 BTC` deposited in ``T``:
 in practice, to be able to append ``T1`` to the blockchain,
 the value in output of a transaction must be strictly less
 than the value in input.
@@ -142,7 +142,7 @@ redeemable only by user Alice:
 The constant ``pubA`` declares Alice's *public key*.
 Users may generate as many public keys as they want.
 
-The :ref:`predicate <label_c_functions>` :btm:`versig(pubA; x)`
+The :ref:`predicate <label_c_functions>` :balzac:`versig(pubA; x)`
 in the output script of ``T2`` is true  if ``x`` is a valid signature
 of the transaction which redeems ``T2``, 
 computed with Alice's private key. 
@@ -159,7 +159,7 @@ The transaction ``T2`` can be redeemed by a transaction ``T3`` made as follows:
         output = 50 BTC: fun(x) . versig(pubA; x) // any condition chosen by Alice
     }
 
-The witness :btm:`sig(kA)` is the :ref:`signature <label_c_functions>`
+The witness :balzac:`sig(kA)` is the :ref:`signature <label_c_functions>`
 of transaction ``T3`` (without considering the witness itself)
 using the private key ``kA``.
 
@@ -221,7 +221,7 @@ Parametric transactions
 """""""""""""""""""""""
 Transaction definition can be parametric.
 For instance, in the following example ``T6`` takes one parameter
-of type :btm:`pubkey` and uses it in the output script.
+of type :balzac:`pubkey` and uses it in the output script.
 
 
 .. code-block:: btm
@@ -281,7 +281,7 @@ Participants
 
 |langname| supports the definition of *participants*.
 
-Participants can be declared as :btm:`participant Alice {...}`
+Participants can be declared as :balzac:`participant Alice {...}`
 and enclose constant and transaction declarations.
 Consider the following example:
 
@@ -311,7 +311,7 @@ that are globally visible within the same file.
 In order to refers to the participant declarations, the participant name
 must precede the declaration name, e.g. ``Alice.T`` or ``Alice.name``.
 
-*Private local declarations* are preceded by the keyword :btm:`private`:
+*Private local declarations* are preceded by the keyword :balzac:`private`:
 a private declaration is visible only within the participant in which
 is declared. In the following example the constant ``kA`` is not visible
 outside the Alice's participant.

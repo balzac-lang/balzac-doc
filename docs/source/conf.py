@@ -299,11 +299,11 @@ inline_highlight_literals = False
 
 langname = 'Balzac'
 
-highlight_language = "btm"
+highlight_language = "balzac"
 
 rst_prolog = """
 .. |langname| replace:: {0}
 
-.. role:: btm(code)
-   :language: btm
+.. role:: balzac(code)
+   :language: balzac
 """.format(langname)

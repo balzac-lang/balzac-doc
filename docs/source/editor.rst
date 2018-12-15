@@ -123,7 +123,7 @@ See :doc:`transactions`.
 Evaluation
 """"""""""
 
-The :btm:`eval` statement takes a list of expression and evaluate them.
+The :balzac:`eval` statement takes a list of expression and evaluate them.
 The results are saved in text format in ``src-gen/_package-path_/transactions``.
 
 .. code-block:: btm

@@ -23,7 +23,7 @@ editor using a *fake coinbase transaction* ``A_funds``.
         output = 1 BTC: fun(x). versig(kApub; x)
     }
 
-``kApub`` is the public key of Alice and :btm:`versig(kApub; x)` checks
+``kApub`` is the public key of Alice and :balzac:`versig(kApub; x)` checks
 that ``x`` is a valid signature for ``kApub``.
 Assuming that only Alice owns the corresponding private part
 of ``kApub``, she is the only one able to spend ``A_funds``.
