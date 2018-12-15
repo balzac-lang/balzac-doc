@@ -85,3 +85,9 @@ p.caption {
     box-shadow: 0px 0px 5px 5px #e1e4e5;
 }
 
+/*
+ * Fix image resizable
+ */
+.rst-content img {
+    height: auto !important;
+}
