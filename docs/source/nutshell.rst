@@ -273,3 +273,58 @@ Indeed:
     }
     
     eval T9_bis(4)  //sig(kA) is calculated now
+
+
+""""""""""""
+Participants
+""""""""""""
+
+|langname| supports the definition of *participants*.
+
+Participants can be declared as :btm:`participant Alice {...}`
+and enclose constant and transaction declarations.
+Consider the following example:
+
+.. code-block:: balzac
+
+    // Global declarations
+    const pubA = pubkey:0364de313bd23bca4ed8db326dc3c66c32a6aa3687ef6b885445c226b9e2366ebf
+    const fee = 0.0003 BTC
+
+    participant Alice {
+        // Local declarations
+        const name = "Alice"
+
+        transaction T {
+            input = _
+            output = 1 BTC - fee :
+                fun(x, y) . x == name && versig(pubA; y)
+        }
+    }
+
+    eval pubA, Alice.T
+
+The snippet above defines two global declarations ``pubA`` and ``fee``,
+that are globally visible within the same file.
+
+*Local declarations* can be defined within participants.
+In order to refers to the participant declarations, the participant name
+must precede the declaration name, e.g. ``Alice.T`` or ``Alice.name``.
+
+*Private local declarations* are preceded by the keyword :btm:`private`:
+a private declaration is visible only within the participant in which
+is declared. In the following example the constant ``kA`` is not visible
+outside the Alice's participant.
+
+.. code-block:: balzac
+    :emphasize-lines: 8
+
+    participant Alice {
+        private const pubA = pubkey:0364de313bd23bca4ed8db326dc3c66c32a6aa3687ef6b885445c226b9e2366ebf
+    }
+
+    transaction T {
+        input = _
+        output = 10 BTC : fun(x) .
+          versig(Alice.pubA; x)       // Error: couldn't resolve 'Alice.kA'
+    }
