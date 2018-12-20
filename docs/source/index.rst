@@ -27,6 +27,7 @@ of the `University of Cagliari <https://www.unica.it/unica/en/homepage.page>`_.
 
     nutshell
     keys
+    raw-transactions
     
 .. toctree::
     :maxdepth: 3
