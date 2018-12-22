@@ -22,15 +22,16 @@ of the `University of Cagliari <https://www.unica.it/unica/en/homepage.page>`_.
 
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 1
     :caption: Getting Started
 
     nutshell
     keys
     raw-transactions
-    
+
+
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
     :caption: Language Specification
 
     transactions
@@ -40,14 +41,16 @@ of the `University of Cagliari <https://www.unica.it/unica/en/homepage.page>`_.
 
 
 .. toctree::
+    :hidden:
     :maxdepth: 3
     :caption: Installation and Configuration
 
     eclipse-install
     eclipse-conf
 
+
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 1
     :caption: Smart contracts
 
     oracle

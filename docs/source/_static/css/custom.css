@@ -12,6 +12,14 @@ p {
     font-size: 95%;
 }
 
+h2, .rst-content .toctree-wrapper p.caption {
+    margin-top: 2em;
+}
+
+section li {
+    font-size: 95%;
+    margin-bottom: 0.8em;
+}
 
 .wy-nav-content {
     max-width: 1024px;
