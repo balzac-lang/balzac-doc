@@ -229,6 +229,22 @@ The precedence is: ``- (unary)`` > ``*`` ``/`` > ``+`` ``-`` > ``==`` ``!=`` > `
         a + 42 / 2,
         a + b > c - 1
 
+--------------------
+String Concatenation
+--------------------
+|langname| supports string concatenation through operator symbol ``+``.
+When the left operand is typed as :balzac:`string`,
+the right operand is converted to a string and concatenated to the left one.
+
+.. code-block:: balzac
+
+  eval
+      "Hello " + "world!",         // "Hello world!"
+      "Hello " + "world! " + 42,   // "Hello world! 42"
+      "Hello " + 42 + " world!",   // "Hello 42 world!"
+      42 + " Hello world!"         // Type error
+
+
 ---
 BTC
 ---
@@ -932,6 +948,58 @@ which output consider as :balzac:`T.output(i,j,...).value`.
         T.output(0,1).value,  // 5000
         T.output(0).value,    // 3000
         T.output(1).value     // 2000
+
+
+Transaction Fees
+^^^^^^^^^^^^^^^^
+The expression :balzac:`T.fees`, where ``T`` is an expression
+of type :balzac:`transaction`, returns the amount of fees (type :balzac:`int`)
+``T``. This is equivalent to :balzac:`T.input.value - T.output.value`.
+
+.. code-block:: balzac
+
+    transaction coinbase {
+        input = _    // no input 
+        output = 5000: fun(x) . x == 42
+    }
+
+    transaction T {
+        input = coinbase: 42
+        output = [
+            3000: fun(x) . x != 0;
+            1500: fun(x) . x != 0
+        ]
+    }
+
+    eval
+        T.input.value,        // 5000
+        T.output.value,       // 4500
+        T.fees                //  500
+
+
+Transaction ID
+^^^^^^^^^^^^^^
+The expression :balzac:`T.txid`, where ``T`` is an expression
+of type :balzac:`transaction`, returns the transaction id (type :balzac:`hash`)
+of ``T``. It corresponds to the double sha256 of the serialized transaction.
+
+.. code-block:: balzac
+
+    transaction coinbase {
+        input = _    // no input 
+        output = 10 BTC: fun(x) . x == 42
+    }
+
+    transaction T {
+        input = coinbase: 42
+        output = 10 BTC: fun(x) . x != 0
+    }
+
+    eval
+        T.txid,     // 5adea0f653081857ebe7d422c3e8bcef6d702d54c5ce768a23dd876385f7832a
+        T.txid == hash:5adea0f653081857ebe7d422c3e8bcef6d702d54c5ce768a23dd876385f7832a
+                    // true
+
 
 
 Example: fees and reminders
