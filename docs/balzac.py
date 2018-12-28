@@ -38,7 +38,7 @@ class BalzacLexer(RegexLexer):
             (r'hash:|sig:|address:|key:|pubkey:|tx:|txid:', Keyword.Pseudo, 'literal'),
             # keywords: go before method names to avoid lexing "throw new XYZ"
             # as a method signature
-            (r'\b(network|mainnet|testnet|regtest|this|input|output|absLock|relLock|after|block|date|from|if|then|else|sig|of|versig|fun|BTC|hash160|hash256|ripemd160|sha256|sha1|min|max|between|size|eval|checkBlock|checkDate|checkBlockDelay|checkTimeDelay|toAddress|toPubkey|value|AIAO|AISO|AINO|SIAO|SISO|SINO|private|participant|fees|txid)\b', Keyword),
+            (r'\b(network|mainnet|testnet|regtest|this|input|output|absLock|relLock|after|block|date|from|if|then|else|sig|of|versig|fun|BTC|hash160|hash256|ripemd160|sha256|sha1|min|max|between|size|eval|checkBlock|checkDate|checkBlockDelay|checkTimeDelay|toAddress|toPubkey|value|AIAO|AISO|AINO|SIAO|SISO|SINO|private|participant|fees|txid|assert)\b', Keyword),
             (r'(sig)'                           # sig
              r'\((([^\W\d]|\$)[\w\'$]*)\)',      # key
              bygroups(using(this), Text)),
