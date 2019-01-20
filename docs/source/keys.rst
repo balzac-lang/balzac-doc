@@ -29,6 +29,11 @@ the type is :balzac:`pubkey` for public keys, :balzac:`key` for private keys, an
     // Bob's public key
     const kBpub = kB.toPubkey
 
+    // Carl's private key
+    const kC = key:cVhDA3Yxkeacnci8WUokAfQT6Nv4tGpmy1GzSYtJdYqDDwZipPPB
+    // Carl's public key
+    const kCpub = kB.toPubkey
+
 
 Within transactions, users certify their identity with the  function :ref:`sig <label_c_functions>`,
 and verify other users' identity with the predicate
