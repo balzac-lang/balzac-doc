@@ -45,7 +45,6 @@ help:
 	@echo "  pseudoxml  to make pseudoxml-XML files for display purposes"
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
-	@echo "  coverage   to run coverage check of the documentation (if enabled)"
 
 .PHONY: clean
 clean:
@@ -235,9 +234,9 @@ clean-doc:
 .PHONY: install-lexer
 install-lexer:
 	LEXER_NAME=balzac.py; \
-	LEXER_FILE=$$LEXER_NAME; \
+	LEXER_FILE=lexers/$$LEXER_NAME; \
 	STYLE_NAME=eclipse.py; \
-	STYLE_FILE=$$STYLE_NAME; \
+	STYLE_FILE=lexers/$$STYLE_NAME; \
 	PY_SITES=`pip show pygments | grep Location | cut -f2 -d\ `; \
 	for s in $$PY_SITES; do \
 		LEXERS_DIR=$$s/pygments/lexers; \
@@ -262,9 +261,7 @@ install-lexer:
 .PHONY: remove-lexer
 remove-lexer:
 	LEXER_NAME=balzac.py; \
-	LEXER_FILE=$$LEXER_NAME; \
 	STYLE_NAME=eclipse.py; \
-	STYLE_FILE=$$STYLE_NAME; \
 	PY_SITES=`pip show pygments | grep Location | cut -f2 -d\ `; \
 	for s in $$PY_SITES; do \
 		LEXERS_DIR=$$s/pygments/lexers; \
