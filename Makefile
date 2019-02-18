@@ -272,7 +272,7 @@ remove-lexer:
 			sudo rm -f $$LEXERS_DIR/$$LEXER_NAME; \
 			cd $$LEXERS_DIR; \
 			sudo python _mapping.py; \
-			cd $$OLDPWD); \
+			cd $$OLDPWD; \
 		fi; \
 		echo $$STYLES_DIR; \
 		if [ -d $$STYLES_DIR ]; then \
