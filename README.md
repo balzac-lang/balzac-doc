@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/balzac-lang/balzac-doc.svg?branch=master)](https://travis-ci.org/balzac-lang/balzac-doc)
+
 # Requirements
 
 The documentation is generated in Python (version 3, but it may work with Python 2 too).
