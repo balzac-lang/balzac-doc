@@ -17,7 +17,7 @@ before_script:
   - pip install sphinx pygments sphinxcontrib-inlinesyntaxhighlight
 
 script:
-  - make -C docs/ install-lexer build-doc-warning
+  - make install-lexer build-doc-warning
 
 notifications:
   email:
