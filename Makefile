@@ -288,6 +288,12 @@ loop:
 .PHONY: server
 server:
 	cd build/html/ && \
+	/usr/bin/env python3 -m http.server 8000 && \
+	cd ..
+
+.PHONY: server2
+server2:
+	cd build/html/ && \
 	/usr/bin/env python2 -m SimpleHTTPServer 8000 && \
 	cd ..
 
