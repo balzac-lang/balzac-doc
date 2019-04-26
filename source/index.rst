@@ -11,12 +11,16 @@ You can also use Balzac to design Bitcoin smart contracts [AB+18POST]_.
 Some examples are given at the end of this tutorial.
 
 Try our `web editor <https://blockchain.unica.it/balzac/>`_.
-
 The project is open source, and you are welcome to contribute to our
 `repository <https://github.com/balzac-lang/balzac>`_.
 
 |langname| is developed by the `Blockchain@Unica group <http://blockchain.unica.it/>`_
 of the `University of Cagliari <https://www.unica.it/unica/en/homepage.page>`_.
+
+.. warning ::
+	|langname| is intended for research purposes only. 
+	Do not use it to create mainnet transactions, or do it at your own risk.
+
 
 **Contents:**
 
@@ -65,12 +69,6 @@ of the `University of Cagliari <https://www.unica.it/unica/en/homepage.page>`_.
 ..        -, for subsections
 ..        ^, for subsubsections
 ..        ", for paragraphs
-
-
-.. warning ::
-	|langname| is intended for research purposes only. 
-	Do not use it to create mainnet transactions, or do it at your own risk.
-
 
 .. rubric:: References
 
