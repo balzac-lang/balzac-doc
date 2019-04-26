@@ -22,8 +22,8 @@ of the `University of Cagliari <https://www.unica.it/unica/en/homepage.page>`_.
 	Do not use it to create mainnet transactions, or do it at your own risk.
 
 
-**Contents:**
-
+Contents
+========
 
 .. toctree::
     :maxdepth: 1
