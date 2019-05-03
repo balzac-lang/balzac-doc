@@ -363,7 +363,7 @@ This expression has type :balzac:`int` and expects that ``a`` and ``b`` have typ
 
 Between
 ^^^^^^^
-The expression :balzac:`between(x,min:max)` checks a number `x` is in range ``[min,max]``.
+The expression :balzac:`between(x,min:max)` checks the number `x` is between ``min`` **inclusive** and ``max`` **exclusive**.
 This expression has type :balzac:`bool` and expects that ``x``, ``min`` and ``max`` have type :balzac:`int`.
 
 
