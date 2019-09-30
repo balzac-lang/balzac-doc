@@ -45,6 +45,11 @@ that can be used as input.
         input = Traw : sig(k)
         output = ...
     }
+    
+You can obtain the serialized format of a transaction with id ``tx_id``,
+calling the API ``https://chain.so/api/v2/tx/BTC/tx_id``.
+The serialized transaction is in the field ``"tx_hex"``.
+For a testnet transaction, the API to call is ``https://chain.so/api/v2/tx/BTCTEST/tx_id``.
 
 |langname| still checks that the witness correctly spends
 the input transaction.
