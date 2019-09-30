@@ -47,9 +47,9 @@ that can be used as input.
     }
     
 You can obtain the serialized format of a transaction with id ``tx_id``,
-calling the API `https://chain.so/api/v2/tx/BTC/tx_id<https://chain.so/api/v2/tx/BTC/tx_id>`_.
+calling the API `https://chain.so/api/v2/tx/BTC/tx_id <https://chain.so/api/v2/tx/BTC/tx_id>`_.
 The serialized transaction is in the field ``"tx_hex"``.
-For a testnet transaction, the API to call is `https://chain.so/api/v2/tx/BTCTEST/tx_id<https://chain.so/api/v2/tx/BTCTEST/tx_id>`_.
+For a testnet transaction, the API to call is `https://chain.so/api/v2/tx/BTCTEST/tx_id <https://chain.so/api/v2/tx/BTCTEST/tx_id>`_.
 
 |langname| still checks that the witness correctly spends
 the input transaction.
