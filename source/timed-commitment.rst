@@ -55,10 +55,7 @@ for the public key ``kApub`` of Alice.
     // Alice's public key
     const kApub = pubkey:03ff41f23b70b1c83b01914eb223d7a97a6c2b24e9a9ef2762bf25ed1c1b83c9c3
 
-It is possible to refer the **real** transaction ``A_funds`` declaring:
-
-- ``const A_funds = txid:TRANSACTION_ID`` or
-- ``const A_funds = tx:TRANSACTION-HEX``.
+It is possible to refer the **real** transaction ``A_funds`` declaring ``const A_funds = tx:TRANSACTION-HEX``.
 
 However, if we don't have a real transaction, we can create a *fake coinbase transaction* that behaves in the same way.
 This transaction cannot be really published on the blockchain, but it is useful to check if the transactions
