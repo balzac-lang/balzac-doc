@@ -95,7 +95,14 @@ Bitcoin supports some types of output scripts format. Some of them are:
 - **P2SH** (*Pay to Script Hash*) which encodes the hash of the script in the output and
   requires the script to be provided as input (alongside its actual parameters).
 
-|langname| adopts P2PKH and P2SH to encode output scripts.
+- **P2WPKH** (*Pay to Witness Public Key Hash*) is the same of **P2PKH**
+  but the signature and the public key are provided in the *witness* field of the transaction input.
+
+- **P2WSH** (*Pay to Witness Script Hash*) is the same of **P2SH**
+  but the script and its inputs are provided in the *witness* field of the transaction input.
+
+|langname| currently supports P2PKH and P2SH to encode output scripts,
+but it will support P2WPKH and P2WSH in future releases.
 
 ^^^^^
 P2PKH
