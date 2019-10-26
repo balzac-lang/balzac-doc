@@ -10,7 +10,7 @@ and compiling them into actual Bitcoin transactions. It is based on the formal m
 You can also use Balzac to design Bitcoin smart contracts [AB+18POST]_. 
 Some examples are given at the end of this tutorial.
 
-Try our `web editor <https://blockchain.unica.it/balzac/>`_.
+Try our `web editor <https://editor.balzac-lang.xyz/>`_.
 The project is open source, and you are welcome to contribute to our
 `repository <https://github.com/balzac-lang/balzac>`_.
 
