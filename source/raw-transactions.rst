@@ -45,11 +45,6 @@ that can be used as input.
         input = Traw : sig(k)
         output = ...
     }
-    
-You can obtain the serialized format of a transaction with id ``tx_id``,
-calling the API `https://chain.so/api/v2/tx/BTC/tx_id <https://chain.so/api/v2/tx/BTC/tx_id>`_.
-The serialized transaction is in the field ``tx_hex``.
-For a testnet transaction, the API to call is `https://chain.so/api/v2/tx/BTCTEST/tx_id <https://chain.so/api/v2/tx/BTCTEST/tx_id>`_.
 
 |langname| still checks that the witness correctly spends
 the input transaction.
@@ -58,6 +53,31 @@ scripts format and
 the following section explains 
 how |langname| compiles the output scripts and how to use
 the two kinds of transaction that it may generate.
+
+
+.. Tip ::
+    **How to obtain the hexadecimal payload of a transaction?**
+
+    Using a Bitcoin explorer, for example:
+
+     - https://live.blockcypher.com 
+     - https://chain.so/
+
+    In general an explorer provides an API to get transactions information, like the hexadecimal payload.
+
+    For example, supposing you have the transaction id ``c21a1fe9cfa19e046cd8279f899ae1179fa4bd4d9b5c6e2b2ae72c417b21cd34``, you can get the transaction payload with the following command:
+
+    .. code-block:: bash
+
+        curl -s 'https://api.blockcypher.com/v1/btc/test3/txs/c21a1fe9cfa19e046cd8279f899ae1179fa4bd4d9b5c6e2b2ae72c417b21cd34?limit=50&includeHex=true' \
+          | jq .hex -r
+
+    The output should be like:
+
+    .. code-block:: none
+
+        010000000001020e5e36d31db07ef92b93d48243c12fef395745cf70490301bfa04d2a1b73968b000000002322002019ecd7474e6443c7a2a2636ff30e15ae8a8ef44b2c026185233485d94cf83ba6ffffffff606b58f4ddafeafeb69aa0124adb31a48c23c460bb242225b7590ba0713f0237000000002322002019ecd7474e6443c7a2a2636ff30e15ae8a8ef44b2c026185233485d94cf83ba6ffffffff0240420f000000000017a914b7845c73bfbeaaedd7b7c3338537f617665ff46487d14413000000000017a9149381e7c97d7af0e89d497b1c26e3af71366e42f3870400473044022010fe9047e11bba44f1e1b4e72cf25eb627311236409d8c991321ee11abeccae7022043df2c0b25c61a157173729e5ec7ce3229435fffc1f88345e1ffc5f2d47408da01473044022005b465788f1e30f04a9aa231da74c3acc0ed786a2ecdb51d38ba476b14e589bb022011e8d7a65f5be382d3efdcfe631557a64582607d0338611e2940aaa2ff7afde301475221032da83b817dee057d797098ee5fe109de33b0c740c00ca503d1a0b458141695f92103b04e3dce7d502b33eac31f52fca7189bdaa0b1ce37698cedad6de28e0ffb3f7a52ae0400473044022001dc8c1a753fc6b235fbe3378548d05fbb5930fa4941d283ec5d7249bf9b2e9d0220467780932cb360762b99dfa98dc6bc9806554408ef64930c25adfeccde93dca501483045022100fd74d6be08eff46fe98110ea75d4c9a25478ba46703ad5e9e14519f6eda703e7022062830697422d242fc48d09c2be0b907063be4bda7357477b5e11c0ccfc31ab4001475221032da83b817dee057d797098ee5fe109de33b0c740c00ca503d1a0b458141695f92103b04e3dce7d502b33eac31f52fca7189bdaa0b1ce37698cedad6de28e0ffb3f7a52ae00000000
+
 
 ---------------------
 Output scripts format
