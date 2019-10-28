@@ -65,7 +65,7 @@ the two kinds of transaction that it may generate.
 
     In general an explorer provides an API to get transactions information, like the hexadecimal payload.
 
-    For example, supposing you have the transaction id ``c21a1fe9cfa19e046cd8279f899ae1179fa4bd4d9b5c6e2b2ae72c417b21cd34``, you can get the transaction payload with the following command:
+    For example, supposing you have a transaction published in the **testnet** with id ``c21a1fe9cfa19e046cd8279f899ae1179fa4bd4d9b5c6e2b2ae72c417b21cd34``, you can get the transaction payload with the following command:
 
     .. code-block:: bash
 
