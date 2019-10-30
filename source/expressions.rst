@@ -523,8 +523,14 @@ and verify that a given signature is valid against a public key.
 Transaction signature
 ^^^^^^^^^^^^^^^^^^^^^
 
-The expression :balzac:`sig(k) of T`, where ``k`` has type :balzac:`key` and ``T`` has type :balzac:`transaction`,
-generates a new signature. The result type is :balzac:`signature`.
+The expression :balzac:`sig(k) of T@n`, where ``k`` has type :balzac:`key`, ``T`` has type :balzac:`transaction`,
+and ``n`` is an integer (note that it is not an expression of type :balzac:`int`),
+generates a new signature.
+If omitted, ``n`` is ``0`` and represents the index of the input in which the signature will
+be added.
+The result type is :balzac:`signature`.
+
+
 
 .. code-block:: balzac
     :emphasize-lines: 14,15
