@@ -121,8 +121,8 @@ on ``TA``.
 The signature applies to all the fields of the transaction *but* the witnesses.
 The actual signature is generated when compiling the transaction.
 
-Alternatively, we can use :balzac:`sig(kA) of TA` to generate the signature
-outside the transaction:
+Alternatively, we can use :balzac:`sig(kA) of TA@n` to generate the signature
+outside the transaction, where ``n`` is the index of the input that will contain the transaction.
 
 .. code-block:: balzac
 
@@ -132,16 +132,27 @@ outside the transaction:
 	}
 
 	// Alice's signature of T
-	const sigA = sig(kA) of T 
+	const sigA = sig(kA) of T@0
 
 	transaction TA {
 		input = A_funds : sigA                   // Alice's signature of T
-		output = 1 BTC: fun(x). versig(kApub; x)  // any condition 
+		output = 1 BTC: fun(x). versig(kApub; x) // any condition 
 	}
 
 Note that the witness in ``TA`` is Alice's signature of ``T``:
 indeed, the two transactions
 have the same signature, since their input and output fields are the same.
+You can check it with:
+
+.. code-block:: balzac
+
+    assert sig(kA) of T@0 == sig(kA) of TA@0
+
+Also, you can omit the index ``n`` if it is zero:
+
+.. code-block:: balzac
+
+    assert sig(kA) of T == sig(kA) of T@0
 
 The construct :balzac:`sig(k) of T` also applies to parametric transactions.
 This is especially useful when the parameter is the witness, like in the
@@ -226,21 +237,3 @@ who uses them to instantiate ``T_template`` with the actual signatures:
 
 Finally, the instantiated ``T_template`` can be appended to the blockchain
 to redeem ``T_ABC``.
-      
-    
-
-
-      
-    
-
-
-
-
-
-
-
-
-
-
-
-
