@@ -8,7 +8,7 @@ BALZaC (for Bitcoin Abstract Language, Analyzer and Compiler)
 is a domain-specific language to write Bitcoin transactions,
 based on the paper [AB+18FC]_.
 |langname| features a simple syntax to express Bitcoin transactions.
-We illustrate  it through a series of examples, that you can experiment with in the `online editor <http://blockchain.unica.it/balzac/>`_.
+We illustrate it through a series of examples, that you can experiment with in the `online editor <http://blockchain.unica.it/balzac/>`_.
 
 
 .. _label_t_modeling:
@@ -20,9 +20,9 @@ A basic transaction
 Bitcoin transactions transfer currency, the *bitcoins* (BTC).
 Each transaction has one or more inputs, from where it takes the bitcoins,
 and one or more outputs, which specify the recipient(s).
-|langname| also allows for  transactions  with  no inputs:
+|langname| also allows for transactions with no inputs:
 even thought these transactions cannot be appended *as is* to the actual
-Bitcoin blockchain, they are useful to  refer to transactions which are
+Bitcoin blockchain, they are useful to refer to transactions which are
 not known at specification time. 
 An example of transaction with no inputs is the following:
 
@@ -36,7 +36,7 @@ An example of transaction with no inputs is the following:
 
 The output field of transaction ``T`` contains a value, :balzac:`50 BTC`, and 
 an *output script*,  :balzac:`fun(x) . x==42`.
-This means that  50 bitcoins will  be transferred to any transaction
+This means that  50 bitcoins will be transferred to any transaction
 which provides a *witness*  ``x``  such that :balzac:`x == 42`.
 
 To append ``T`` to the Bitcoin blockchain,
@@ -45,8 +45,8 @@ of an unspent transaction already on the blockchain,
 which has at least 50 BTC.
 
 You can use the `web editor <http://blockchain.unica.it/balzac/>`_  to write
-|langname| transactions,   to check their syntax, and to compile them  into
-actual Bitcoin  transactions.
+|langname| transactions,   to check their syntax, and to compile them into
+actual Bitcoin transactions.
 The output of the compiler is a serialized transaction for the Bitcoin
 test network (testnet).
 To generate transactions for the main network (mainnet), one must specify the network as follows:  
@@ -57,14 +57,14 @@ To generate transactions for the main network (mainnet), one must specify the ne
 
 
 For instance, let us paste transaction ``T`` into the editor and then let us add command :balzac:`eval T` to it. 
-Now, if we hit the button [Compile], the web editor shows in the output box the transaction ``T``  in  Bitcoin (testnet) serialization format.
+Now, if we hit the button *Evaluate*, the web editor shows in the output box the transaction ``T``  in Bitcoin (testnet) serialization format.
 
 .. figure:: _static/img/compiling_t.png
     :scale: 75 %
     :class: img-border
     :align: center
 
-The serialized transaction can  be sent to the Bitcoin network using the Bitcoin client command ``bitcoin-cli sendrawtransaction``.
+The serialized transaction can be sent to the Bitcoin network using the Bitcoin client command ``bitcoin-cli sendrawtransaction``.
 However, in order to be published, ``T`` must redeem a real transaction on the blockchain.
 In |langname|, it is possible to define a transaction using its hex format, for example:
 
@@ -82,7 +82,7 @@ In |langname|, it is possible to define a transaction using its hex format, for 
 """""""""""""""""""""""""""""""
 Redeeming a transaction
 """""""""""""""""""""""""""""""
-If one needs to use the bitcoin stored within  ``T``, she  can
+If one needs to use the bitcoin stored within  ``T``, she can
 redeem it with the following transaction: 
 
 .. code-block:: balzac
@@ -92,9 +92,9 @@ redeem it with the following transaction:
         output = 50 BTC: fun(x). x != 0  // any constraint chosen by the user
     }
 
-Transaction ``T1`` redeems  ``T`` by indicating it  in the  :balzac:`input` field,
+Transaction ``T1`` redeems  ``T`` by indicating it in the  :balzac:`input` field,
 and by providing the number 42 as *witness*. 
-The value 42 is the actual parameter which  replaces the formal parameter ``x`` in the  output script :balzac:`fun(x) . x == 42`,  and makes the script evaluate to true.
+The value 42 is the actual parameter which replaces the formal parameter ``x`` in the output script :balzac:`fun(x) . x == 42`,  and makes the script evaluate to true.
 Any other witness would make the script evaluate to false,
 and would prevent the transaction ``T1`` from being added to the blockchain. 
 A transaction cannot be spent twice:
@@ -122,7 +122,7 @@ than the incoming one, the editor will signal the error.
 Signature verification 
 """""""""""""""""""""""""""""""
 
-The output scripts of ``T`` and ``T1`` are  naive,
+The output scripts of ``T`` and ``T1`` are naive,
 since anyone can produce the right witnesses.
 Usually, one wants to transfer bitcoins to a specific user.
 For instance, the following transaction ``T2``  makes the 50 BTC of  ``T1``
@@ -143,7 +143,7 @@ The constant ``pubA`` declares Alice's *public key*.
 Users may generate as many public keys as they want.
 
 The :ref:`predicate <label_c_functions>` :balzac:`versig(pubA; x)`
-in the output script of ``T2`` is true  if ``x`` is a valid signature
+in the output script of ``T2`` is true if ``x`` is a valid signature
 of the transaction which redeems ``T2``, 
 computed with Alice's private key. 
 
@@ -212,7 +212,7 @@ For instance:
         output = 50 BTC: fun(x) . versig(pubA; x)
     }
 
-which calculates  the signature of  transaction ``T5``
+which calculates the signature of transaction ``T5``
 using the private key ``k``.   (see :ref:`function list <label_c_functions>` ). 
 
 
