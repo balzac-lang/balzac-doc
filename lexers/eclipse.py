@@ -56,4 +56,4 @@ class EclipseStyle(Style):
         Generic.Prompt:            "bold",
         
         Error:                     "border:#FF0000"
-}
+    }

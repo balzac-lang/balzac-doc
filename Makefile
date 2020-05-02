@@ -236,26 +236,19 @@ install-lexer:
 	LEXER_NAME=balzac.py; \
 	LEXER_FILE=lexers/$$LEXER_NAME; \
 	STYLE_NAME=eclipse.py; \
-	STYLE_FILE=lexers/$$STYLE_NAME; \
+	STYLE_FILE=lexers/balzaclexer/$$STYLE_NAME; \
 	PY_SITES=`pip show pygments | grep Location | cut -f2 -d\ `; \
 	for s in $$PY_SITES; do \
 		LEXERS_DIR=$$s/pygments/lexers; \
 		STYLES_DIR=$$s/pygments/styles; \
 		echo $$LEXERS_DIR; \
 		if [ -d $$LEXERS_DIR ]; then \
-			echo "Installing $$LEXER_NAME in $$LEXERS_DIR"; \
-			sudo rm -f $$LEXERS_DIR/$$LEXER_NAME; \
-			sudo cp $$LEXER_FILE $$LEXERS_DIR; \
-			cd $$LEXERS_DIR; \
-			sudo python _mapping.py; \
+			echo "Installing $$LEXER_NAME..."; \
+			cd lexers; \
+			sudo python setup.py develop; \
+			sudo pip install Balzac-lexer-and-style; \
 			cd $$OLDPWD; \
 		fi; \
-		echo $$STYLES_DIR; \
-		if [ -d $$STYLES_DIR ]; then \
-			echo "Installing $$STYLE_NAME in $$STYLES_DIR"; \
-			sudo rm -f $$STYLES_DIR/$$STYLE_NAME; \
-			sudo cp $$STYLE_FILE $$STYLES_DIR; \
-		fi \
 	done
 
 .PHONY: remove-lexer
@@ -268,17 +261,12 @@ remove-lexer:
 		STYLES_DIR=$$s/pygments/styles; \
 		echo $$LEXERS_DIR; \
 		if [ -d $$LEXERS_DIR ]; then \
-			echo "Removing $$LEXER_NAME in $$LEXERS_DIR"; \
-			sudo rm -f $$LEXERS_DIR/$$LEXER_NAME; \
-			cd $$LEXERS_DIR; \
-			sudo python _mapping.py; \
+			echo "Removing $$LEXER_NAME..."; \
+			cd lexers; \
+			sudo python setup.py develop --uninstall; \
+			sudo pip uninstall Balzac-lexer-and-style; \
 			cd $$OLDPWD; \
 		fi; \
-		echo $$STYLES_DIR; \
-		if [ -d $$STYLES_DIR ]; then \
-			echo "Removing $$STYLE_NAME in $$STYLES_DIR"; \
-			sudo rm -f $$STYLES_DIR/$$STYLE_NAME; \
-		fi \
 	done
 
 .PHONY: loop
