@@ -2,10 +2,10 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-PAPER         =
-BUILDDIR      = build
+SPHINXOPTS  =
+SPHINXBUILD = sphinx-build
+PAPER       =
+BUILDDIR    = build
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
@@ -22,6 +22,18 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 .PHONY: help
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "  build                to build the documentation"
+	@echo "  clean                to clean the documentation"
+	@echo "  build-fatal-warnings to build the documentation and fail if there are warnings"
+	@echo "  install-lexer        to install the lexer and the style"
+	@echo "  remove-lexer         to remove the lexer and the style"
+	@echo "  full-build           to install the lexer and build the documentation"
+	@echo "  full-clean           to remove the lexer and clean the documentation"
+	@echo "  loop                 to rebuild the documentation on changes"
+	@echo "  server               to start an http server using Python 3"
+	@echo "  server2              to start an http server using Python 2"
+	@echo
+	@echo " Other commands"
 	@echo "  html       to make standalone HTML files"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"
@@ -45,6 +57,7 @@ help:
 	@echo "  pseudoxml  to make pseudoxml-XML files for display purposes"
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
+	@echo "  coverage   to run coverage check of the documentation (if enabled)"
 
 .PHONY: clean
 clean:
@@ -85,14 +98,14 @@ htmlhelp:
 	$(SPHINXBUILD) -b htmlhelp $(ALLSPHINXOPTS) $(BUILDDIR)/htmlhelp
 	@echo
 	@echo "Build finished; now you can run HTML Help Workshop with the" \
-	      ".hhp project file in $(BUILDDIR)/htmlhelp."
+		  ".hhp project file in $(BUILDDIR)/htmlhelp."
 
 .PHONY: qthelp
 qthelp:
 	$(SPHINXBUILD) -b qthelp $(ALLSPHINXOPTS) $(BUILDDIR)/qthelp
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
-	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
+		  ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
 	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/Diogenes.qhcp"
 	@echo "To view the help file:"
 	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/Diogenes.qhc"
@@ -103,8 +116,8 @@ applehelp:
 	@echo
 	@echo "Build finished. The help book is in $(BUILDDIR)/applehelp."
 	@echo "N.B. You won't be able to view it unless you put it in" \
-	      "~/Library/Documentation/Help or install it in your application" \
-	      "bundle."
+		  "~/Library/Documentation/Help or install it in your application" \
+		  "bundle."
 
 .PHONY: devhelp
 devhelp:
@@ -128,7 +141,7 @@ latex:
 	@echo
 	@echo "Build finished; the LaTeX files are in $(BUILDDIR)/latex."
 	@echo "Run \`make' in that directory to run these through (pdf)latex" \
-	      "(use \`make latexpdf' here to do that automatically)."
+		  "(use \`make latexpdf' here to do that automatically)."
 
 .PHONY: latexpdf
 latexpdf:
@@ -162,7 +175,7 @@ texinfo:
 	@echo
 	@echo "Build finished. The Texinfo files are in $(BUILDDIR)/texinfo."
 	@echo "Run \`make' in that directory to run these through makeinfo" \
-	      "(use \`make info' here to do that automatically)."
+		  "(use \`make info' here to do that automatically)."
 
 .PHONY: info
 info:
@@ -188,19 +201,19 @@ linkcheck:
 	$(SPHINXBUILD) -b linkcheck $(ALLSPHINXOPTS) $(BUILDDIR)/linkcheck
 	@echo
 	@echo "Link check complete; look for any errors in the above output " \
-	      "or in $(BUILDDIR)/linkcheck/output.txt."
+		  "or in $(BUILDDIR)/linkcheck/output.txt."
 
 .PHONY: doctest
 doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
 	@echo "Testing of doctests in the sources finished, look at the " \
-	      "results in $(BUILDDIR)/doctest/output.txt."
+		  "results in $(BUILDDIR)/doctest/output.txt."
 
 .PHONY: coverage
 coverage:
 	$(SPHINXBUILD) -b coverage $(ALLSPHINXOPTS) $(BUILDDIR)/coverage
 	@echo "Testing of coverage in the sources finished, look at the " \
-	      "results in $(BUILDDIR)/coverage/python.txt."
+		  "results in $(BUILDDIR)/coverage/python.txt."
 
 .PHONY: xml
 xml:
@@ -212,83 +225,62 @@ xml:
 pseudoxml:
 	$(SPHINXBUILD) -b pseudoxml $(ALLSPHINXOPTS) $(BUILDDIR)/pseudoxml
 	@echo
-	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."## Build the documentation
+	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
 
 
-
-## 
-.PHONY: build-doc
-build-doc:
+## Build the documentation
+.PHONY: build
+build:
 	make html
 
-.PHONY: build-doc-warning
-build-doc-warning:
+## Build the documentation and fail if there are warnings
+.PHONY: build-fatal-warnings
+build-fatal-warnings:
 	$(SPHINXBUILD) -W -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 
-
-## Clean the documentation
-.PHONY: clean-doc
-clean-doc:
-	make clean
-
+## Install the lexer and the style
 .PHONY: install-lexer
 install-lexer:
-	LEXER_NAME=balzac.py; \
-	LEXER_FILE=lexers/$$LEXER_NAME; \
-	STYLE_NAME=eclipse.py; \
-	STYLE_FILE=lexers/balzaclexer/$$STYLE_NAME; \
-	PY_SITES=`pip show pygments | grep Location | cut -f2 -d\ `; \
-	for s in $$PY_SITES; do \
-		LEXERS_DIR=$$s/pygments/lexers; \
-		STYLES_DIR=$$s/pygments/styles; \
-		echo $$LEXERS_DIR; \
-		if [ -d $$LEXERS_DIR ]; then \
-			echo "Installing $$LEXER_NAME..."; \
-			cd lexers; \
-			sudo python setup.py develop; \
-			sudo pip install Balzac-lexer-and-style; \
-			cd $$OLDPWD; \
-		fi; \
-	done
+	@echo "Installing lexer..."; \
+	cd lexers; \
+	sudo python setup.py develop; \
+	sudo pip install Balzac-lexer-and-style; \
+	cd $$OLDPWD
 
+## Remove the lexer and the style
 .PHONY: remove-lexer
 remove-lexer:
-	LEXER_NAME=balzac.py; \
-	STYLE_NAME=eclipse.py; \
-	PY_SITES=`pip show pygments | grep Location | cut -f2 -d\ `; \
-	for s in $$PY_SITES; do \
-		LEXERS_DIR=$$s/pygments/lexers; \
-		STYLES_DIR=$$s/pygments/styles; \
-		echo $$LEXERS_DIR; \
-		if [ -d $$LEXERS_DIR ]; then \
-			echo "Removing $$LEXER_NAME..."; \
-			cd lexers; \
-			sudo python setup.py develop --uninstall; \
-			sudo pip uninstall Balzac-lexer-and-style; \
-			cd $$OLDPWD; \
-		fi; \
-	done
+	@echo "Removing lexer..."; \
+	cd lexers; \
+	sudo python setup.py develop --uninstall; \
+	sudo pip uninstall Balzac-lexer-and-style; \
+	cd $$OLDPWD
 
+## Start a loop that search for changes and rebuild the documentation if there are any
 .PHONY: loop
 loop:
 	./ifchanged.py source 'make build-doc'
 
+## Start an http server using Python 3
 .PHONY: server
 server:
 	cd build/html/ && \
 	/usr/bin/env python3 -m http.server 8000 && \
 	cd ..
 
+## Start an http server using Python 2
 .PHONY: server2
 server2:
 	cd build/html/ && \
 	/usr/bin/env python2 -m SimpleHTTPServer 8000 && \
 	cd ..
 
-.PHONY: full-clean
-full-clean:
-	make clean-doc && make remove-lexer
-
+## Install the lexer and build the documentation
 .PHONY: full-build
 full-build:
-	make install-lexer && make build-doc
+	make install-lexer && make build
+
+## Remove the lexer and clean the documentation
+.PHONY: full-clean
+full-clean:
+	make remove-lexer && make clean

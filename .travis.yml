@@ -13,7 +13,7 @@ before_script:
 
 script:
   - cd lexers && python setup.py develop && pip install Balzac-lexer-and-style && cd $OLDPWD
-  - make build-doc-warning
+  - make build-fatal-warnings
 
 notifications:
   email:
