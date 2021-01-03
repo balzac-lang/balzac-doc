@@ -259,7 +259,7 @@ remove-lexer:
 ## Start a loop that search for changes and rebuild the documentation if there are any
 .PHONY: loop
 loop:
-	./ifchanged.py source 'make build-doc'
+	./ifchanged.py source 'make build'
 
 ## Start an http server using Python 3
 .PHONY: server

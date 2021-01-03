@@ -48,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'BALZaC'
-copyright = '2018, N. Atzei, M. Bartoletti, T. Cimoli, S. Lande, R. Zunino'
+copyright = '2021, N. Atzei, M. Bartoletti, T. Cimoli, S. Lande, R. Zunino'
 author = 'N. Atzei, M. Bartoletti, T. Cimoli, S. Lande, R. Zunino'
 
 # The version info for the project you're documenting, acts as replacement for
