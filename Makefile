@@ -243,8 +243,8 @@ build-fatal-warnings:
 install-lexer:
 	@echo "Installing lexer..."; \
 	cd lexers; \
-	sudo python setup.py develop; \
-	sudo pip install Balzac-lexer-and-style; \
+	python setup.py develop; \
+	pip install Balzac-lexer-and-style; \
 	cd $$OLDPWD
 
 ## Remove the lexer and the style
@@ -252,8 +252,8 @@ install-lexer:
 remove-lexer:
 	@echo "Removing lexer..."; \
 	cd lexers; \
-	sudo python setup.py develop --uninstall; \
-	sudo pip uninstall Balzac-lexer-and-style; \
+	python setup.py develop --uninstall; \
+	pip uninstall Balzac-lexer-and-style; \
 	cd $$OLDPWD
 
 ## Start a loop that search for changes and rebuild the documentation if there are any

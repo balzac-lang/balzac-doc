@@ -52,3 +52,19 @@ Please use `make <target>' where <target> is one of
   coverage   to run coverage check of the documentation (if enabled)
 
 ```
+
+## Docker build
+
+Build the image
+
+```
+docker build -t balzaclang/balzac-doc:latest .
+```
+
+Run the image on port 8080
+
+```
+docker run --rm --name balzac-doc -p 8080:80 balzaclang/balzac-doc:latest
+```
+
+The documentation is visible at http://localhost:8080

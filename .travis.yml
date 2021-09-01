@@ -1,7 +1,11 @@
 language: python
 python:
   - "2.7"
-  - "3.6"
+  - "3.9"
+
+env:
+  global:
+  - LATEST_VERSION=$(git tag --list --points-at $HEAD)
 
 sudo: required
 
@@ -15,9 +19,20 @@ script:
   - cd lexers && python setup.py develop && pip install Balzac-lexer-and-style && cd $OLDPWD
   - make build-fatal-warnings
 
+after_success:
+- docker build -t balzaclang/balzac-doc:latest -t balzaclang/balzac-doc:${LATEST_VERSION} .
+
 notifications:
   email:
     recipients:
       - atzeinicola@gmail.com
-    on_success: change # default: change
-    on_failure: always # default: always
+    on_success: change
+    on_failure: always
+
+deploy:
+- provider: script
+  script: bash scripts/docker_push.sh
+  on:
+    tags: true
+    python: "3.9"
+    repo: balzac-lang/balzac-doc
