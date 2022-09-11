@@ -7,8 +7,6 @@ env:
   global:
   - LATEST_VERSION=$(git tag --list --points-at $HEAD)
 
-sudo: required
-
 install:
   - sudo apt-get -qq update
 
