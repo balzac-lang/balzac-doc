@@ -1,6 +1,3 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
 name: Python application
 
 on:
@@ -21,9 +18,6 @@ on:
         default: false
   schedule:
   - cron: '0 0 1 * *'
-
-permissions:
-  contents: read
 
 jobs:
 
@@ -64,14 +58,6 @@ jobs:
       with:
         name: doc-artifact-${{ matrix.python }}
         path: build/html/
-
-    - name: Upload documentation artifact to Github Releases
-      uses: fnkr/github-action-ghr@v1
-      if: ${{ github.ref_type == 'tag' }}
-      env:
-        GHR_PATH: build/html/
-        GHR_COMPRESS: zip
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   docker-build:
 
@@ -122,3 +108,26 @@ jobs:
         build-args: html=build/
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+
+
+  release:
+    name: Release
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_type == 'tag' }}
+
+    steps:
+
+    - name: Download documentation artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: doc-artifact-3.9
+        path: documentation
+
+    - name: Upload documentation artifact to Github Releases
+      uses: fnkr/github-action-ghr@v1
+      env:
+        GHR_PATH: documentation
+        GHR_COMPRESS: zip
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
