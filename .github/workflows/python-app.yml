@@ -1,0 +1,115 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python application
+
+on:
+  push:
+    branches: [ "master" ]
+    tags: '*'
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+    inputs:
+      latestTag:
+        description: Tag the image as 'latest'
+        type: boolean
+        default: false
+      testTag:
+        description: Tag the image as 'test'
+        type: boolean
+        default: false
+  schedule:
+  - cron: '0 0 1 * *'
+
+permissions:
+  contents: read
+
+jobs:
+
+  build:
+    strategy:
+      matrix:
+        python: ['2.7', '3.9', '3.10']
+      fail-fast: false
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install sphinx pygments sphinxcontrib-inlinesyntaxhighlight
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Install custom Lexers
+      run: cd lexers && python setup.py develop && pip install Balzac-lexer-and-style && cd $OLDPWD
+
+    - name: Build documentation
+      run: make build-fatal-warnings
+
+    - name: Upload documentaion artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: doc-artifact-${{ matrix.python }}
+        path: build/html
+
+    - name: Upload documentation artifact to Github Releases
+      uses: fnkr/github-action-ghr@v1
+      if: ${{ github.ref_type == 'tag' }}
+      env:
+        GHR_PATH: xyz.balzaclang.balzac.web/target/balzac.war
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Download war artifact
+      uses: actions/download-artifact@v3
+      if: ${{ matrix.python == '3.9' }}
+      with:
+        name: doc-artifact-${{ matrix.python }}
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+      if: ${{ matrix.python == '3.9' }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      if: ${{ matrix.python == '3.9' }}
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      if: ${{ matrix.python == '3.9' }}
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v4
+      if: ${{ matrix.python == '3.9' }}
+      with:
+        images: balzaclang/balzac-doc
+        tags: |
+          type=raw,value=latest,enable=${{ inputs.latestTag || false }}
+          type=raw,value=test,enable=${{ inputs.testTag || false }}
+          type=raw,value=test-{{sha}},enable=${{ inputs.testTag || false }}
+          type=raw,value={{tag}},enable=${{ github.ref_type == 'tag' }}
+
+    - name: Build Docker images
+      uses: docker/build-push-action@v3
+      if: ${{ matrix.python == '3.9' }}
+      with:
+        context: .
+        platforms: linux/amd64,linux/arm64,linux/arm/v7
+        push: ${{ github.ref_type == 'tag' }}
+        build-args: html=build/html/
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
