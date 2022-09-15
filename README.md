@@ -55,7 +55,7 @@ Please use `make <target>' where <target> is one of
 
 ## Docker build
 
-Build the image
+Build the image assuming the documentation is stored in `build/html`.
 
 ```
 docker build -t balzaclang/balzac-doc:latest .
