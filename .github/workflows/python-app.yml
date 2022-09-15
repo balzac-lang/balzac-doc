@@ -122,12 +122,11 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: doc-artifact-3.9
-        path: documentation
+        path: build/html
 
     - name: Upload documentation artifact to Github Releases
       uses: fnkr/github-action-ghr@v1
       env:
-        GHR_PATH: documentation
+        GHR_PATH: build/
         GHR_COMPRESS: zip
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
