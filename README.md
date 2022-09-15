@@ -1,5 +1,5 @@
 # Balzac Documentation
-[![Build Status](https://travis-ci.org/balzac-lang/balzac-doc.svg?branch=master)](https://travis-ci.org/balzac-lang/balzac-doc)
+[![Python application](https://github.com/balzac-lang/balzac-doc/actions/workflows/python-app.yml/badge.svg)](https://github.com/balzac-lang/balzac-doc/actions/workflows/python-app.yml)
 
 ## Requirements
 
