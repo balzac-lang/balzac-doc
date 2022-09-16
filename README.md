@@ -68,3 +68,19 @@ docker run --rm --name balzac-doc -p 8080:80 balzaclang/balzac-doc:latest
 ```
 
 The documentation is visible at http://localhost:8080
+
+### Prebuilt image
+
+DockerHub: [balzaclang/balzac-doc](https://hub.docker.com/r/balzaclang/balzac-doc)
+
+```
+docker pull balzaclang/balzac-doc:latest
+```
+
+Balzac documentation is available for the following architectures:
+
+```
+- linux/amd64
+- linux/arm/v7
+- linux/arm64
+```
