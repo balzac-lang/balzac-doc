@@ -6,7 +6,7 @@
 The documentation is generated with [Sphinx](http://sphinx-doc.org). Use `pip` to install the dependencies:
 
 ```
-pip install sphinx pygments sphinxcontrib-inlinesyntaxhighlight
+pip install sphinx pygments sphinx-rtd-theme
 ```
 
 ## Available commands
@@ -21,9 +21,7 @@ Please use `make <target>' where <target> is one of
   remove-lexer         to remove the lexer and the style
   full-build           to install the lexer and build the documentation
   full-clean           to remove the lexer and clean the documentation
-  loop                 to rebuild the documentation on changes
   server               to start an http server using Python 3
-  server2              to start an http server using Python 2
 
  Other commands
   html       to make standalone HTML files

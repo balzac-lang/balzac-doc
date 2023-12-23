@@ -29,9 +29,7 @@ help:
 	@echo "  remove-lexer         to remove the lexer and the style"
 	@echo "  full-build           to install the lexer and build the documentation"
 	@echo "  full-clean           to remove the lexer and clean the documentation"
-	@echo "  loop                 to rebuild the documentation on changes"
 	@echo "  server               to start an http server using Python 3"
-	@echo "  server2              to start an http server using Python 2"
 	@echo
 	@echo " Other commands"
 	@echo "  html       to make standalone HTML files"
@@ -256,23 +254,11 @@ remove-lexer:
 	pip uninstall Balzac-lexer-and-style; \
 	cd $$OLDPWD
 
-## Start a loop that search for changes and rebuild the documentation if there are any
-.PHONY: loop
-loop:
-	./ifchanged.py source 'make build'
-
 ## Start an http server using Python 3
 .PHONY: server
 server:
 	cd build/html/ && \
 	/usr/bin/env python3 -m http.server 8000 && \
-	cd ..
-
-## Start an http server using Python 2
-.PHONY: server2
-server2:
-	cd build/html/ && \
-	/usr/bin/env python2 -m SimpleHTTPServer 8000 && \
 	cd ..
 
 ## Install the lexer and build the documentation
