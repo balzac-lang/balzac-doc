@@ -2,6 +2,8 @@ name: Python application
 
 on:
   push:
+    tags:
+    - '*'
     branches: [ "master" ]
     paths-ignore:
     - 'README.md'
@@ -21,6 +23,18 @@ on:
         default: false
   schedule:
   - cron: '0 0 1 * *'
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
 
@@ -56,7 +70,7 @@ jobs:
     - name: Build documentation
       run: make build-fatal-warnings
 
-    - name: Upload documentaion artifact
+    - name: Upload documentation artifact
       uses: actions/upload-artifact@v3
       with:
         name: doc-artifact-${{ matrix.python }}
@@ -76,7 +90,7 @@ jobs:
     - name: Download documentation artifact
       uses: actions/download-artifact@v3
       with:
-        name: doc-artifact-3.9
+        name: doc-artifact-3.11
         path: build/
 
     - name: Set up QEMU
@@ -119,22 +133,33 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.ref_type == 'tag' }}
 
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
 
     - name: Download documentation artifact
       uses: actions/download-artifact@v3
       with:
-        name: doc-artifact-3.9
+        name: doc-artifact-3.11
         path: build/html
 
-    - name: Upload documentation artifact to Github Releases
-      uses: fnkr/github-action-ghr@v1
-      env:
-        GHR_PATH: build
-        GHR_COMPRESS: zip
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Upload documentation artifact to Github Releases
+#      uses: fnkr/github-action-ghr@v1
+#      env:
+#        GHR_PATH: build
+#        GHR_COMPRESS: zip
+#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Publish GitHub Page
-      uses: rdok/publish-gh-page-action@v1.2.2
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        directory: build/html
+        path: build/html
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
