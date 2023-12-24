@@ -1,4 +1,4 @@
-name: Python application
+name: Build and Release
 
 on:
   push:
@@ -26,9 +26,10 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -116,7 +117,7 @@ jobs:
           type=raw,value=test-{{sha}},enable=${{ inputs.testTag || false }}
           type=raw,value={{tag}},enable=${{ github.ref_type == 'tag' }}
 
-    - name: Build Docker images
+    - name: Build and push Docker images
       uses: docker/build-push-action@v3
       with:
         context: .
@@ -128,7 +129,29 @@ jobs:
 
 
   release:
-    name: Release
+    name: Release Artifact
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_type == 'tag' }}
+
+    steps:
+
+    - name: Download documentation artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: doc-artifact-3.11
+        path: build/html
+
+    - name: Upload documentation artifact to Github Releases
+      uses: fnkr/github-action-ghr@v1
+      env:
+        GHR_PATH: build
+        GHR_COMPRESS: zip
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  deploy-pages:
+    name: Deploy Github Pages
     needs: [build]
     runs-on: ubuntu-latest
     if: ${{ github.ref_type == 'tag' }}
@@ -144,13 +167,6 @@ jobs:
       with:
         name: doc-artifact-3.11
         path: build/html
-
-#    - name: Upload documentation artifact to Github Releases
-#      uses: fnkr/github-action-ghr@v1
-#      env:
-#        GHR_PATH: build
-#        GHR_COMPRESS: zip
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Setup Pages
       uses: actions/configure-pages@v4

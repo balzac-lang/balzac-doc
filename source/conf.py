@@ -4,6 +4,9 @@
 import sys
 import os
 import time
+import subprocess
+
+commit_id = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).strip().decode('ascii')
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -39,14 +42,15 @@ master_doc = 'index'
 # General information about the project.
 project = 'BALZaC'
 author = 'N. Atzei, M. Bartoletti, T. Cimoli, S. Lande, R. Zunino'
-copyright = author
+copyright = f'{author}. Revision {commit_id}'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = time.strftime("%d %b %Y")
+date = time.strftime("%d %b %Y")
+version = date
 #version = "1.0.0-SNAPSHOT"
 # The full version, including alpha/beta/rc tags.
 #release = time.strftime("%d/%m/%Y")
