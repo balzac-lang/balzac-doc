@@ -5,10 +5,6 @@ BALZaC
 
 *Bitcoin Abstract Language, analyZer and Compiler*
 
-.. image:: https://en.cryptobadges.io/badge/small/1BALZaCuLUEnGYv6TJLMkya6QG1oxM8fKg
-    :alt: Bitcoin donate badge
-    :target: https://en.cryptobadges.io/donate/1BALZaCuLUEnGYv6TJLMkya6QG1oxM8fKg
-
 |langname| is an high-level language for writing transactions, verifying their correctness, 
 and compiling them into actual Bitcoin transactions. It is based on the formal model proposed in [AB+18FC]_.
 You can also use Balzac to design Bitcoin smart contracts [AB+18POST]_. 
@@ -25,8 +21,6 @@ of the `University of Cagliari <https://www.unica.it/unica/en/homepage.page>`_.
 	|langname| is intended for research purposes only. 
 	Do not use it to create mainnet transactions, or do it at your own risk.
 
-Contents
-========
 
 .. toctree::
     :maxdepth: 1

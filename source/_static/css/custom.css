@@ -1,26 +1,5 @@
 @import "theme.css";
 
-body {
-    font-family: 'Open Sans', sans-serif;
-}
-
-h1, h2, h3, h4, h5 {
-    font-family: 'Raleway', sans-serif;
-}
-
-p {
-    font-size: 95%;
-}
-
-h2, .rst-content .toctree-wrapper p.caption {
-    margin-top: 2em;
-}
-
-section li {
-    font-size: 95%;
-    margin-bottom: 0.8em;
-}
-
 .wy-nav-content {
     max-width: 1024px;
 }
@@ -98,4 +77,8 @@ p.caption {
  */
 .rst-content img {
     height: auto !important;
+}
+
+div.citation {
+    grid-template-columns: auto !important;
 }
