@@ -21,9 +21,7 @@ commit_id = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD']).str
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    'sphinx_rtd_theme',
-]
+extensions = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -51,7 +49,7 @@ copyright = f'{author}. Revision {commit_id}'
 # The short X.Y version.
 date = time.strftime("%d %b %Y")
 version = date
-#version = "1.0.0-SNAPSHOT"
+
 # The full version, including alpha/beta/rc tags.
 #release = time.strftime("%d/%m/%Y")
 release = time.strftime("%Y-%m-%d_%I%M%S")
