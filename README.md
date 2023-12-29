@@ -6,7 +6,7 @@
 The documentation is generated with [Sphinx](http://sphinx-doc.org). Use `pip` to install the dependencies:
 
 ```
-pip install sphinx pygments sphinx-rtd-theme
+pip install sphinx pygments
 ```
 
 ## Available commands
