@@ -1,84 +1,97 @@
 # Balzac Documentation
 [![Python application](https://github.com/balzac-lang/balzac-doc/actions/workflows/python-app.yml/badge.svg)](https://github.com/balzac-lang/balzac-doc/actions/workflows/python-app.yml)
 
-## Requirements
+## Overview
 
-The documentation is generated with [Sphinx](http://sphinx-doc.org). Use `pip` to install the dependencies:
+This repository contains the official documentation for the Balzac programming language. Balzac is a domain-specific language designed for writing Bitcoin smart contracts. The documentation is built using Sphinx and provides comprehensive information about the language's syntax, features, and usage.
 
+## Quick Start
+
+### Prerequisites
+
+- Python 3.x
+- pip (Python package manager)
+
+### Installation
+
+1. Clone this repository:
+```bash
+git clone https://github.com/balzac-lang/balzac-doc.git
+cd balzac-doc
 ```
+
+2. Install dependencies:
+```bash
 pip install sphinx pygments
 ```
 
-## Available commands
-
-Run `make` to list the available commands:
-```shell
-Please use `make <target>' where <target> is one of
-  build                to build the documentation
-  clean                to clean the documentation
-  build-fatal-warnings to build the documentation and fail if there are warnings
-  install-lexer        to install the lexer and the style
-  remove-lexer         to remove the lexer and the style
-  full-build           to install the lexer and build the documentation
-  full-clean           to remove the lexer and clean the documentation
-  server               to start an http server using Python 3
-
- Other commands
-  html       to make standalone HTML files
-  dirhtml    to make HTML files named index.html in directories
-  singlehtml to make a single large HTML file
-  pickle     to make pickle files
-  json       to make JSON files
-  htmlhelp   to make HTML files and a HTML help project
-  qthelp     to make HTML files and a qthelp project
-  applehelp  to make an Apple Help Book
-  devhelp    to make HTML files and a Devhelp project
-  epub       to make an epub
-  latex      to make LaTeX files, you can set PAPER=a4 or PAPER=letter
-  latexpdf   to make LaTeX files and run them through pdflatex
-  latexpdfja to make LaTeX files and run them through platex/dvipdfmx
-  text       to make text files
-  man        to make manual pages
-  texinfo    to make Texinfo files
-  info       to make Texinfo files and run them through makeinfo
-  gettext    to make PO message catalogs
-  changes    to make an overview of all changed/added/deprecated items
-  xml        to make Docutils-native XML files
-  pseudoxml  to make pseudoxml-XML files for display purposes
-  linkcheck  to check all external links for integrity
-  doctest    to run all doctests embedded in the documentation (if enabled)
-  coverage   to run coverage check of the documentation (if enabled)
-
+3. Install the Balzac lexer and build the documentation:
+```bash
+make full-build
 ```
 
-## Docker build
-
-Build the image assuming the documentation is stored in `build/html`.
-
+4. Start a local server to view the documentation:
+```bash
+make server
 ```
+
+The documentation will be available at http://localhost:8000
+
+## Building the Documentation
+
+### Available Commands
+
+Run `make` to see all available commands. Here are the most commonly used ones:
+
+```bash
+make build                # Build the documentation
+make clean                # Clean the documentation
+make html                 # Build HTML documentation
+make latexpdf             # Build PDF documentation
+make linkcheck            # Check all external links
+```
+
+For a complete list of available commands, run `make` without arguments.
+
+## Docker Support
+
+### Building the Docker Image
+
+Build the Docker image (assuming the documentation is in `build/html`):
+
+```bash
 docker build -t balzaclang/balzac-doc:latest .
 ```
 
-Run the image on port 8080
+### Running the Documentation Server
 
-```
+Run the container on port 8080:
+
+```bash
 docker run --rm --name balzac-doc -p 8080:80 balzaclang/balzac-doc:latest
 ```
 
-The documentation is visible at http://localhost:8080
+Access the documentation at http://localhost:8080
 
-### Prebuilt image
+### Using Prebuilt Images
 
-DockerHub: [balzaclang/balzac-doc](https://hub.docker.com/r/balzaclang/balzac-doc)
+Pull the latest image from DockerHub:
 
-```
+```bash
 docker pull balzaclang/balzac-doc:latest
 ```
 
-Balzac documentation is available for the following architectures:
-
-```
+Available architectures:
 - linux/amd64
 - linux/arm/v7
 - linux/arm64
-```
+
+## Contributing
+
+We welcome contributions to the documentation! Please feel free to submit issues or pull requests to help improve the documentation.
+
+
+## Resources
+
+- [Balzac Language Repository](https://github.com/balzac-lang/balzac)
+- [Online Editor](http://blockchain.unica.it/balzac/)
