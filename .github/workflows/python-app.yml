@@ -42,7 +42,7 @@ jobs:
   build:
     strategy:
       matrix:
-        python: ['3.9', '3.11']
+        python: ['3.9', '3.13']
       fail-fast: false
 
     name: Python ${{ matrix.python }}
@@ -52,17 +52,17 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python }}
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install sphinx pygments sphinx-rtd-theme
+        pip install sphinx pygments sphinx-rtd-theme setuptools
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Install custom Lexers
@@ -86,12 +86,12 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Download documentation artifact
-      uses: actions/download-artifact@v4.1.7
+      uses: actions/download-artifact@v4
       with:
-        name: doc-artifact-3.11
+        name: doc-artifact-3.13
         path: build/
 
     - name: Set up QEMU
@@ -137,9 +137,9 @@ jobs:
     steps:
 
     - name: Download documentation artifact
-      uses: actions/download-artifact@v4.1.7
+      uses: actions/download-artifact@v4
       with:
-        name: doc-artifact-3.11
+        name: doc-artifact-3.13
         path: build/html
 
     - name: Upload documentation artifact to Github Releases
@@ -163,9 +163,9 @@ jobs:
     steps:
 
     - name: Download documentation artifact
-      uses: actions/download-artifact@v4.1.7
+      uses: actions/download-artifact@v4
       with:
-        name: doc-artifact-3.11
+        name: doc-artifact-3.13
         path: build/html
 
     - name: Setup Pages
