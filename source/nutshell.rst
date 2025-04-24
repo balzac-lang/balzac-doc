@@ -21,7 +21,7 @@ Bitcoin transactions transfer currency, the *bitcoins* (BTC).
 Each transaction has one or more inputs, from where it takes the bitcoins,
 and one or more outputs, which specify the recipient(s).
 |langname| also allows for transactions with no inputs:
-even thought these transactions cannot be appended *as is* to the actual
+even though these transactions cannot be appended *as is* to the actual
 Bitcoin blockchain, they are useful to refer to transactions which are
 not known at specification time. 
 An example of transaction with no inputs is the following:
@@ -35,8 +35,8 @@ An example of transaction with no inputs is the following:
     }
 
 The output field of transaction ``T`` contains a value, :balzac:`50 BTC`, and 
-an *output script*,  :balzac:`fun(x) . x==42`.
-This means that  50 bitcoins will be transferred to any transaction
+an *output script*, :balzac:`fun(x) . x==42`.
+This means that 50 bitcoins will be transferred to any transaction
 which provides a *witness*  ``x``  such that :balzac:`x == 42`.
 
 To append ``T`` to the Bitcoin blockchain,
@@ -44,8 +44,8 @@ the placeholder ``_`` for the input must be replaced with the identifier
 of an unspent transaction already on the blockchain,
 which has at least 50 BTC.
 
-You can use the `web editor <http://blockchain.unica.it/balzac/>`_  to write
-|langname| transactions,   to check their syntax, and to compile them into
+You can use the `web editor <http://blockchain.unica.it/balzac/>`_ to write
+|langname| transactions, to check their syntax, and to compile them into
 actual Bitcoin transactions.
 The output of the compiler is a serialized transaction for the Bitcoin
 test network (testnet).
@@ -56,7 +56,7 @@ To generate transactions for the main network (mainnet), one must specify the ne
     network mainnet  // default is testnet
 
 
-For instance, let us paste transaction ``T`` into the editor and then let us add command :balzac:`eval T` to it. 
+For instance, let us paste transaction ``T`` into the editor and add command :balzac:`eval T` to it. 
 Now, if we hit the button *Evaluate*, the web editor shows in the output box the transaction ``T``  in Bitcoin (testnet) serialization format.
 
 .. figure:: _static/img/compiling_t.png
@@ -82,7 +82,7 @@ In |langname|, it is possible to define a transaction using its hex format, for 
 """""""""""""""""""""""""""""""
 Redeeming a transaction
 """""""""""""""""""""""""""""""
-If one needs to use the bitcoin stored within  ``T``, she can
+If one needs to use the bitcoin stored within ``T``, she can
 redeem it with the following transaction: 
 
 .. code-block:: balzac
@@ -105,8 +105,7 @@ Note that ``T1`` is redeeming exactly the :balzac:`50 BTC` deposited in ``T``:
 in practice, to be able to append ``T1`` to the blockchain,
 the value in output of a transaction must be strictly less
 than the value in input.
-The difference is retained by Bitcoin miners as a fee for their work.
-Currently, transactions with zero fee are not likely to be added to the blockchain. 
+The difference is retained by Bitcoin miners as a fee for their work, and currently, transactions with zero fee are not likely to be added to the blockchain. 
 
 Now, let us insert both ``T`` and ``T1`` in the editor.  While we
 write, the editor performs some static checks and signals the
@@ -122,8 +121,7 @@ than the incoming one, the editor will signal the error.
 Signature verification 
 """""""""""""""""""""""""""""""
 
-The output scripts of ``T`` and ``T1`` are naive,
-since anyone can produce the right witnesses.
+The output scripts of ``T`` and ``T1`` are naïve, since anyone can produce the right witnesses.
 Usually, one wants to transfer bitcoins to a specific user.
 For instance, the following transaction ``T2``  makes the 50 BTC of  ``T1``
 redeemable only by user Alice: 
@@ -140,7 +138,7 @@ redeemable only by user Alice:
 
 
 The constant ``pubA`` declares Alice's *public key*.
-Users may generate as many public keys as they want.
+Users can generate as many public keys as they want.
 
 The :ref:`predicate <label_c_functions>` :balzac:`versig(pubA; x)`
 in the output script of ``T2`` is true if ``x`` is a valid signature

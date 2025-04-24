@@ -11,7 +11,7 @@ within script definitions (with some limitations), and so on.
 --------
 Literals
 --------
-|langname| features classical expression literals such as **strings**, **integers** and **boolean**,
+|langname| features classical expression literals such as **strings**, **integers** and **booleans**,
 and Bitcoin specific ones like **private keys**, **public keys**, **addresses**, **hashes**, **signatures** and **transactions**.
 
 Literals can be expressed directly in the language and
@@ -77,7 +77,7 @@ The parsing rules are straightforward and conversions are done at parsing time:
 
 Strings
 ^^^^^^^
-Strings are sequence of characters, whose type is :balzac:`string`.
+Strings are sequences of characters, whose type is :balzac:`string`.
 Strings are enclosed by ``"`` or ``'``.
 
 .. code-block:: balzac
@@ -89,15 +89,15 @@ Strings are enclosed by ``"`` or ``'``.
 
 Booleans
 ^^^^^^^^
-Booleans consists of two possible values: :balzac:`true` and :balzac:`false`.
+Booleans consist of two possible values: :balzac:`true` and :balzac:`false`.
 Their type is :balzac:`boolean` (or :balzac:`bool` for brevity).
 
 
 Hashes
 ^^^^^^
-Hashes are sequences of hexdecimal data, whose type is :balzac:`hash`.
+Hashes are sequences of hexadecimal data, whose type is :balzac:`hash`.
 Hashes are represented using the prefix :balzac:`hash:` followed by the hash in
-hexadecimal format. The number of digits is not limited but must be even.
+hexadecimal format. The number of digits must be even but is otherwise unlimited.
 
 .. code-block:: balzac
 
@@ -193,10 +193,10 @@ transaction data in hexadecimal format. Transactions have type :balzac:`transact
 ------------------
 Boolean operations
 ------------------
-|langname| supports classical boolean operator such as **and**, **or** and **not**.
-The syntax is Java-like: ``&&``, ``||`` and ``!`` respectively for and/or/not operation.
+|langname| supports classical boolean operators such as **and**, **or** and **not**.
+The syntax is Java-like: ``&&``, ``||`` and ``!`` respectively for and/or/not operations.
 
-The precedence is: ``!`` > ``&&`` > ``||``.
+The precedence is: unary ``!`` > ``&&`` > ``||``.
 
 The type for a boolean operation is :balzac:`bool` and the type system ensures that
 both the operands are of that type.
@@ -209,19 +209,19 @@ both the operands are of that type.
 ---------------------
 Arithmetic operations
 ---------------------
-|langname| supports classical arithmetic operator such as **equality**, **addition**, **multiplication** and so on.
+|langname| supports classical arithmetic operators such as **equality**, **addition**, **multiplication** and so on.
 The syntax is Java-like: 
 
-- ``a == b``: *true* if ``a`` and ``b`` are equals, *false* otherwise; ``a`` and ``b`` must have the same type
-- ``a != b``: *true* if ``a`` and ``b`` are not equals, *false* otherwise; ``a`` and ``b`` must have the same type
+- ``a == b``: *true* if ``a`` and ``b`` are equal, *false* otherwise; ``a`` and ``b`` must have the same type
+- ``a != b``: *true* if ``a`` and ``b`` are not equal, *false* otherwise; ``a`` and ``b`` must have the same type
 - ``a + b``: sum ``a`` and ``b``; both must be :balzac:`int`
 - ``a - b``: subtract ``b`` from ``a``; both must be :balzac:`int`
 - ``a < b``: *true* if ``a`` is less than ``b``, *false* otherwise (similarly for ``<=``, ``>``, ``>=``); both must be :balzac:`int`
-- ``a * b``: multiply ``a`` from ``b``; both must be :balzac:`int`
+- ``a * b``: multiply ``a`` by ``b``; both must be :balzac:`int`
 - ``a / b``: divide ``a`` by ``b`` (truncate); both must be :balzac:`int`
 - ``-a``: negate ``a``; it must be :balzac:`int`
 
-The precedence is: ``- (unary)`` > ``*`` ``/`` > ``+`` ``-`` > ``==`` ``!=`` > ``<`` ``>`` ``<=`` ``>=``.
+The precedence is: unary ``-`` > ``*`` and ``/`` > ``+`` and ``-`` > ``==`` and ``!=`` > ``<``, ``>``, ``<=``, and ``>=``.
 
 .. code-block:: balzac
 

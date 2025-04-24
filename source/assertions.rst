@@ -4,8 +4,8 @@ Assertions
 
 |langname| supports *assertions*. The statement :balzac:`assert exp`,
 where ``exp`` is an expression of type :balzac:`boolean`,
-checks that the given expression evaluates to true,
-otherwise it throws an error.
+checks that the given expression evaluates to true.
+If the expression evaluates to false, it throws an error.
 
 .. code-block:: balzac
 
@@ -27,12 +27,12 @@ literals.
     assert k.toPubkey == pubkey:02a599b9400ff0ac9f2eb37c444162d5296e78acefc8e7d216581c16916668396b
 
 
-A variant of the assert statement allows to specify an error message.
+A variant of the assert statement allows specifying an error message.
 The syntax is :balzac:`assert exp : msg`, where ``msg`` has type :balzac:`string`.
 
-The following example checks that the id of the transaction ``T`` corresponds to
+The following example checks that the ID of the transaction ``T`` corresponds to
 a given literal hash. This is useful when we publish a transaction on the blockchain
-and we want to be sure that our transaction (modelled in Balzac) corresponds to the real one.
+and we want to be sure that our transaction (modeled in Balzac) corresponds to the real one.
 
 .. code-block:: balzac
 

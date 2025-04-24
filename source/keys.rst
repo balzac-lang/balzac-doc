@@ -2,18 +2,18 @@
 Transaction signatures
 ==================================  
 
-Users interact with  Bitcoin through pseudonyms, which are 
+Users interact with Bitcoin through pseudonyms, which are 
 public keys or *addresses* (namely, hashes of public keys).
 Users can obtain as many pseudonyms as they want, by 
 generating pairs of public/private keys.
 Pseudonyms are used in transactions to specify
 who receives bitcoins.  
-|langname| allows users to generate keys and addresses  through
-the  sidebar of the `web editor <http://blockchain.unica.it/btm/>`_.
+|langname| allows users to generate keys and addresses through
+the sidebar of the `web editor <http://blockchain.unica.it/btm/>`_.
  
-In |langname|,   keys and addresses are typed:
+In |langname|, keys and addresses are typed:
 the type is :balzac:`pubkey` for public keys, :balzac:`key` for private keys, and
-:balzac:`address` for  addresses. 
+:balzac:`address` for addresses. 
 
 .. code-block:: balzac
 
@@ -45,7 +45,7 @@ Verifying signatures
 """"""""""""""""""""
 
 The :ref:`predicate <label_c_functions>` :balzac:`versig(kpub; x)` takes two parameters: a public key ``kpub`` and the signature ``x`` of the redeeming transaction.
-The predicate  is  true if the signature ``x``  has been made with the
+The predicate is true if the signature ``x`` has been made with the
 private key corresponding to ``kpub``.
 For instance, the following transaction transfers :balzac:`1 BTC` to a transaction
 signed by Alice:
@@ -96,7 +96,7 @@ a *2-of-3* multi signature scheme:
 
 
 The predicate  :balzac:`versig(kApub, kBpub, kCpub; x, y)` is true
-if  ``x`` and ``y``  can match two of the three  keys.
+if ``x`` and ``y`` can match two of the three keys.
 For instance, if  ``sigC`` and ``sigB`` are  Carl's and  Bob's signatures, then
 :balzac:`versig(kApub, kBpub, kCpub; sigB, sigC)` is true, while
 :balzac:`versig(kApub, kBpub, kCpub; sigC, sigB)` is false. 
@@ -116,9 +116,8 @@ We can redeem ``A_funds`` with a  transaction ``TA`` made as follows:
 		output = 1 BTC: fun(x). versig(kApub; x) // any condition 
 	}
 
-The value :balzac:`sig(kA)` within the :balzac:`input` field is the signature of Alice
-on ``TA``.
-The signature applies to all the fields of the transaction *but* the witnesses.
+The value :balzac:`sig(kA)` within the :balzac:`input` field is the signature of Alice,
+and it applies to all the fields of the transaction *but* the witnesses.
 The actual signature is generated when compiling the transaction.
 
 Alternatively, we can use :balzac:`sig(kA) of TA@n` to generate the signature

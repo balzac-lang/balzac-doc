@@ -5,9 +5,9 @@ BALZaC
 
 *Bitcoin Abstract Language, analyZer and Compiler*
 
-|langname| is an high-level language for writing transactions, verifying their correctness, 
+|langname| is a high-level language for writing transactions, verifying their correctness, 
 and compiling them into actual Bitcoin transactions. It is based on the formal model proposed in [AB+18FC]_.
-You can also use Balzac to design Bitcoin smart contracts [AB+18POST]_. 
+You can also use |langname| to design Bitcoin smart contracts [AB+18POST]_. 
 Some examples are given at the end of this tutorial.
 
 Try our `web editor <https://editor.balzac-lang.xyz/>`_.

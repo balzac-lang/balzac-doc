@@ -41,9 +41,8 @@ The table below shows the list of types
 .. Hint:: 
    **Type Inference**
 
-   The type can be declared explicitly (left box) 
-   or it can be omitted (right box) if the type checker can statically infer the
-   expression type.
+   Types can be declared explicitly (left box) 
+   or omitted (right box) if the type checker can statically infer them.
 
 
    .. container:: codecompare
